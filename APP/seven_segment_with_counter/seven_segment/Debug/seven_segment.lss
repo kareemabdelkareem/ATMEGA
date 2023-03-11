@@ -1,0 +1,1271 @@
+
+seven_segment.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000006d4  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000002  00800060  000006d4  00000748  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .stab         000006cc  00000000  00000000  0000074c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  3 .stabstr      00000085  00000000  00000000  00000e18  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_aranges 00000100  00000000  00000000  00000ea0  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000caf  00000000  00000000  00000fa0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000455  00000000  00000000  00001c4f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000716  00000000  00000000  000020a4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000140  00000000  00000000  000027bc  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000397  00000000  00000000  000028fc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    0000061e  00000000  00000000  00002c93  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e4 ed       	ldi	r30, 0xD4	; 212
+  68:	f6 e0       	ldi	r31, 0x06	; 6
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a2 36       	cpi	r26, 0x62	; 98
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	a2 e6       	ldi	r26, 0x62	; 98
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a2 36       	cpi	r26, 0x62	; 98
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 28 03 	call	0x650	; 0x650 <main>
+  8a:	0c 94 68 03 	jmp	0x6d0	; 0x6d0 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <button_vidInit>:
+* \Parameters (in) : None                                                                            
+* \Return value:   : None                                
+*******************************************************************************/
+void button_vidInit(void)
+{
+	dio_vidConfigChannel(BUTTON0_PORT,BUTTON0_PIN,INPUT);
+  92:	83 e0       	ldi	r24, 0x03	; 3
+  94:	67 e0       	ldi	r22, 0x07	; 7
+  96:	40 e0       	ldi	r20, 0x00	; 0
+  98:	0e 94 7d 01 	call	0x2fa	; 0x2fa <dio_vidConfigChannel>
+	dio_vidConfigChannel(BUTTON1_PORT,BUTTON1_PIN,INPUT);
+  9c:	83 e0       	ldi	r24, 0x03	; 3
+  9e:	66 e0       	ldi	r22, 0x06	; 6
+  a0:	40 e0       	ldi	r20, 0x00	; 0
+  a2:	0e 94 7d 01 	call	0x2fa	; 0x2fa <dio_vidConfigChannel>
+	dio_vidConfigChannel(BUTTON2_PORT,BUTTON2_PIN,INPUT);
+  a6:	83 e0       	ldi	r24, 0x03	; 3
+  a8:	65 e0       	ldi	r22, 0x05	; 5
+  aa:	40 e0       	ldi	r20, 0x00	; 0
+  ac:	0e 94 7d 01 	call	0x2fa	; 0x2fa <dio_vidConfigChannel>
+}
+  b0:	08 95       	ret
+
+000000b2 <Button_GetStatus>:
+*                                     RELEASED                                  
+*******************************************************************************/
+button_status_t Button_GetStatus(button_id_t button)
+{
+	button_status_t status = RELEASED;
+	switch (button)
+  b2:	81 30       	cpi	r24, 0x01	; 1
+  b4:	71 f0       	breq	.+28     	; 0xd2 <Button_GetStatus+0x20>
+  b6:	81 30       	cpi	r24, 0x01	; 1
+  b8:	18 f0       	brcs	.+6      	; 0xc0 <Button_GetStatus+0xe>
+  ba:	82 30       	cpi	r24, 0x02	; 2
+  bc:	e1 f4       	brne	.+56     	; 0xf6 <Button_GetStatus+0x44>
+  be:	12 c0       	rjmp	.+36     	; 0xe4 <Button_GetStatus+0x32>
+			status = RELEASED;
+		}
+
+#else
+		/*	PULL UP	*/
+		if (dio_dioLevelReadChannel(BUTTON0_PORT,BUTTON0_PIN) == STD_LOW)
+  c0:	83 e0       	ldi	r24, 0x03	; 3
+  c2:	67 e0       	ldi	r22, 0x07	; 7
+  c4:	0e 94 b9 02 	call	0x572	; 0x572 <dio_dioLevelReadChannel>
+* \Return value:   : button_status_t  PRESSED
+*                                     RELEASED                                  
+*******************************************************************************/
+button_status_t Button_GetStatus(button_id_t button)
+{
+	button_status_t status = RELEASED;
+  c8:	91 e0       	ldi	r25, 0x01	; 1
+  ca:	88 23       	and	r24, r24
+  cc:	a9 f0       	breq	.+42     	; 0xf8 <Button_GetStatus+0x46>
+  ce:	90 e0       	ldi	r25, 0x00	; 0
+  d0:	13 c0       	rjmp	.+38     	; 0xf8 <Button_GetStatus+0x46>
+			status = RELEASED;
+		}
+
+#else
+		/*	PULL UP	*/
+		if (dio_dioLevelReadChannel(BUTTON1_PORT,BUTTON1_PIN) == STD_LOW)
+  d2:	83 e0       	ldi	r24, 0x03	; 3
+  d4:	66 e0       	ldi	r22, 0x06	; 6
+  d6:	0e 94 b9 02 	call	0x572	; 0x572 <dio_dioLevelReadChannel>
+* \Return value:   : button_status_t  PRESSED
+*                                     RELEASED                                  
+*******************************************************************************/
+button_status_t Button_GetStatus(button_id_t button)
+{
+	button_status_t status = RELEASED;
+  da:	91 e0       	ldi	r25, 0x01	; 1
+  dc:	88 23       	and	r24, r24
+  de:	61 f0       	breq	.+24     	; 0xf8 <Button_GetStatus+0x46>
+  e0:	90 e0       	ldi	r25, 0x00	; 0
+  e2:	0a c0       	rjmp	.+20     	; 0xf8 <Button_GetStatus+0x46>
+			status = RELEASED;
+		}
+
+#else
+		/*	PULL UP	*/
+		if (dio_dioLevelReadChannel(BUTTON2_PORT,BUTTON2_PIN) == STD_LOW)
+  e4:	83 e0       	ldi	r24, 0x03	; 3
+  e6:	65 e0       	ldi	r22, 0x05	; 5
+  e8:	0e 94 b9 02 	call	0x572	; 0x572 <dio_dioLevelReadChannel>
+* \Return value:   : button_status_t  PRESSED
+*                                     RELEASED                                  
+*******************************************************************************/
+button_status_t Button_GetStatus(button_id_t button)
+{
+	button_status_t status = RELEASED;
+  ec:	91 e0       	ldi	r25, 0x01	; 1
+  ee:	88 23       	and	r24, r24
+  f0:	19 f0       	breq	.+6      	; 0xf8 <Button_GetStatus+0x46>
+  f2:	90 e0       	ldi	r25, 0x00	; 0
+  f4:	01 c0       	rjmp	.+2      	; 0xf8 <Button_GetStatus+0x46>
+  f6:	90 e0       	ldi	r25, 0x00	; 0
+		}
+#endif
+		break;
+	}
+	return status;
+}
+  f8:	89 2f       	mov	r24, r25
+  fa:	08 95       	ret
+
+000000fc <SSD_vidInit>:
+* \Return value:   : Std_ReturnType  E_OK
+*                                    E_NOT_OK                                  
+*******************************************************************************/
+void SSD_vidInit()
+{
+	dio_vidConfigChannel(SSD_port,SSD_pin0,OUTPUT);
+  fc:	81 e0       	ldi	r24, 0x01	; 1
+  fe:	60 e0       	ldi	r22, 0x00	; 0
+ 100:	41 e0       	ldi	r20, 0x01	; 1
+ 102:	0e 94 7d 01 	call	0x2fa	; 0x2fa <dio_vidConfigChannel>
+	dio_vidConfigChannel(SSD_port,SSD_pin1,OUTPUT);
+ 106:	81 e0       	ldi	r24, 0x01	; 1
+ 108:	61 e0       	ldi	r22, 0x01	; 1
+ 10a:	41 e0       	ldi	r20, 0x01	; 1
+ 10c:	0e 94 7d 01 	call	0x2fa	; 0x2fa <dio_vidConfigChannel>
+	dio_vidConfigChannel(SSD_port,SSD_pin2,OUTPUT);
+ 110:	81 e0       	ldi	r24, 0x01	; 1
+ 112:	62 e0       	ldi	r22, 0x02	; 2
+ 114:	41 e0       	ldi	r20, 0x01	; 1
+ 116:	0e 94 7d 01 	call	0x2fa	; 0x2fa <dio_vidConfigChannel>
+	dio_vidConfigChannel(SSD_port,SSD_pin3,OUTPUT);
+ 11a:	81 e0       	ldi	r24, 0x01	; 1
+ 11c:	64 e0       	ldi	r22, 0x04	; 4
+ 11e:	41 e0       	ldi	r20, 0x01	; 1
+ 120:	0e 94 7d 01 	call	0x2fa	; 0x2fa <dio_vidConfigChannel>
+	
+	dio_vidConfigChannel(SSD_Enable1_port,SSD_Enable1_pin,OUTPUT);
+ 124:	80 e0       	ldi	r24, 0x00	; 0
+ 126:	63 e0       	ldi	r22, 0x03	; 3
+ 128:	41 e0       	ldi	r20, 0x01	; 1
+ 12a:	0e 94 7d 01 	call	0x2fa	; 0x2fa <dio_vidConfigChannel>
+	dio_vidConfigChannel(SSD_Enable2_port,SSD_Enable2_pin,OUTPUT);
+ 12e:	80 e0       	ldi	r24, 0x00	; 0
+ 130:	62 e0       	ldi	r22, 0x02	; 2
+ 132:	41 e0       	ldi	r20, 0x01	; 1
+ 134:	0e 94 7d 01 	call	0x2fa	; 0x2fa <dio_vidConfigChannel>
+	dio_vidConfigChannel(SSD_Enable3_port,SSD_Enable3_pin,OUTPUT);
+ 138:	81 e0       	ldi	r24, 0x01	; 1
+ 13a:	65 e0       	ldi	r22, 0x05	; 5
+ 13c:	41 e0       	ldi	r20, 0x01	; 1
+ 13e:	0e 94 7d 01 	call	0x2fa	; 0x2fa <dio_vidConfigChannel>
+	dio_vidConfigChannel(SSD_Enable4_port,SSD_Enable4_pin,OUTPUT);
+ 142:	81 e0       	ldi	r24, 0x01	; 1
+ 144:	66 e0       	ldi	r22, 0x06	; 6
+ 146:	41 e0       	ldi	r20, 0x01	; 1
+ 148:	0e 94 7d 01 	call	0x2fa	; 0x2fa <dio_vidConfigChannel>
+	
+}
+ 14c:	08 95       	ret
+
+0000014e <SSD_DisplayNum>:
+* \Parameters (in) : parameterName   Parameter Describtion
+* \Return value:   : Std_ReturnType  E_OK
+*                                    E_NOT_OK
+*******************************************************************************/
+void SSD_DisplayNum(u16 num) 
+{
+ 14e:	0f 93       	push	r16
+ 150:	1f 93       	push	r17
+ 152:	cf 93       	push	r28
+ 154:	df 93       	push	r29
+	u8 num1 = num % 10  ;
+ 156:	2a e0       	ldi	r18, 0x0A	; 10
+ 158:	30 e0       	ldi	r19, 0x00	; 0
+ 15a:	b9 01       	movw	r22, r18
+ 15c:	0e 94 54 03 	call	0x6a8	; 0x6a8 <__udivmodhi4>
+ 160:	18 2f       	mov	r17, r24
+	num = num /10 ;
+	u8 num2 = num %10 ;
+ 162:	cb 01       	movw	r24, r22
+ 164:	b9 01       	movw	r22, r18
+ 166:	0e 94 54 03 	call	0x6a8	; 0x6a8 <__udivmodhi4>
+ 16a:	d8 2f       	mov	r29, r24
+	num = num/10 ;
+	u8 num3 = num %10 ; 
+ 16c:	cb 01       	movw	r24, r22
+ 16e:	b9 01       	movw	r22, r18
+ 170:	0e 94 54 03 	call	0x6a8	; 0x6a8 <__udivmodhi4>
+ 174:	c8 2f       	mov	r28, r24
+	num = num/10 ;
+	u8 last_num = num %10 ;
+ 176:	cb 01       	movw	r24, r22
+ 178:	b9 01       	movw	r22, r18
+ 17a:	0e 94 54 03 	call	0x6a8	; 0x6a8 <__udivmodhi4>
+ 17e:	08 2f       	mov	r16, r24
+	//enable fisrst digit 
+	dio_vidWriteChannel(SSD_Enable1_port,SSD_Enable1_pin,STD_HIGH) ;
+ 180:	80 e0       	ldi	r24, 0x00	; 0
+ 182:	63 e0       	ldi	r22, 0x03	; 3
+ 184:	41 e0       	ldi	r20, 0x01	; 1
+ 186:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+	
+	dio_vidWriteChannel(SSD_port,SSD_pin0,CHECK_BIT(num1,0)) ;
+ 18a:	41 2f       	mov	r20, r17
+ 18c:	41 70       	andi	r20, 0x01	; 1
+ 18e:	81 e0       	ldi	r24, 0x01	; 1
+ 190:	60 e0       	ldi	r22, 0x00	; 0
+ 192:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+	dio_vidWriteChannel(SSD_port,SSD_pin1,CHECK_BIT(num1,1)) ;
+ 196:	41 2f       	mov	r20, r17
+ 198:	46 95       	lsr	r20
+ 19a:	41 70       	andi	r20, 0x01	; 1
+ 19c:	81 e0       	ldi	r24, 0x01	; 1
+ 19e:	61 e0       	ldi	r22, 0x01	; 1
+ 1a0:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+	dio_vidWriteChannel(SSD_port,SSD_pin2,CHECK_BIT(num1,2)) ;
+ 1a4:	41 2f       	mov	r20, r17
+ 1a6:	46 95       	lsr	r20
+ 1a8:	46 95       	lsr	r20
+ 1aa:	41 70       	andi	r20, 0x01	; 1
+ 1ac:	81 e0       	ldi	r24, 0x01	; 1
+ 1ae:	62 e0       	ldi	r22, 0x02	; 2
+ 1b0:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+	dio_vidWriteChannel(SSD_port,SSD_pin3,CHECK_BIT(num1,3)) ;
+ 1b4:	16 95       	lsr	r17
+ 1b6:	16 95       	lsr	r17
+ 1b8:	16 95       	lsr	r17
+ 1ba:	41 2f       	mov	r20, r17
+ 1bc:	41 70       	andi	r20, 0x01	; 1
+ 1be:	81 e0       	ldi	r24, 0x01	; 1
+ 1c0:	64 e0       	ldi	r22, 0x04	; 4
+ 1c2:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1c6:	8f ec       	ldi	r24, 0xCF	; 207
+ 1c8:	97 e0       	ldi	r25, 0x07	; 7
+ 1ca:	01 97       	sbiw	r24, 0x01	; 1
+ 1cc:	f1 f7       	brne	.-4      	; 0x1ca <SSD_DisplayNum+0x7c>
+ 1ce:	00 c0       	rjmp	.+0      	; 0x1d0 <SSD_DisplayNum+0x82>
+ 1d0:	00 00       	nop
+	
+	_delay_ms(1);
+	dio_vidWriteChannel(SSD_Enable1_port,SSD_Enable1_pin,STD_LOW) ;
+ 1d2:	80 e0       	ldi	r24, 0x00	; 0
+ 1d4:	63 e0       	ldi	r22, 0x03	; 3
+ 1d6:	40 e0       	ldi	r20, 0x00	; 0
+ 1d8:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+	
+	// enable seconde digit 
+	dio_vidWriteChannel(SSD_Enable2_port,SSD_Enable2_pin,STD_HIGH) ;
+ 1dc:	80 e0       	ldi	r24, 0x00	; 0
+ 1de:	62 e0       	ldi	r22, 0x02	; 2
+ 1e0:	41 e0       	ldi	r20, 0x01	; 1
+ 1e2:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+	
+	dio_vidWriteChannel(SSD_port,SSD_pin0,CHECK_BIT(num2,0)) ;
+ 1e6:	4d 2f       	mov	r20, r29
+ 1e8:	41 70       	andi	r20, 0x01	; 1
+ 1ea:	81 e0       	ldi	r24, 0x01	; 1
+ 1ec:	60 e0       	ldi	r22, 0x00	; 0
+ 1ee:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+	dio_vidWriteChannel(SSD_port,SSD_pin1,CHECK_BIT(num2,1)) ;
+ 1f2:	4d 2f       	mov	r20, r29
+ 1f4:	46 95       	lsr	r20
+ 1f6:	41 70       	andi	r20, 0x01	; 1
+ 1f8:	81 e0       	ldi	r24, 0x01	; 1
+ 1fa:	61 e0       	ldi	r22, 0x01	; 1
+ 1fc:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+	dio_vidWriteChannel(SSD_port,SSD_pin2,CHECK_BIT(num2,2)) ;
+ 200:	4d 2f       	mov	r20, r29
+ 202:	46 95       	lsr	r20
+ 204:	46 95       	lsr	r20
+ 206:	41 70       	andi	r20, 0x01	; 1
+ 208:	81 e0       	ldi	r24, 0x01	; 1
+ 20a:	62 e0       	ldi	r22, 0x02	; 2
+ 20c:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+	dio_vidWriteChannel(SSD_port,SSD_pin3,CHECK_BIT(num2,3)) ;
+ 210:	d6 95       	lsr	r29
+ 212:	d6 95       	lsr	r29
+ 214:	d6 95       	lsr	r29
+ 216:	4d 2f       	mov	r20, r29
+ 218:	41 70       	andi	r20, 0x01	; 1
+ 21a:	81 e0       	ldi	r24, 0x01	; 1
+ 21c:	64 e0       	ldi	r22, 0x04	; 4
+ 21e:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+ 222:	8f ec       	ldi	r24, 0xCF	; 207
+ 224:	97 e0       	ldi	r25, 0x07	; 7
+ 226:	01 97       	sbiw	r24, 0x01	; 1
+ 228:	f1 f7       	brne	.-4      	; 0x226 <SSD_DisplayNum+0xd8>
+ 22a:	00 c0       	rjmp	.+0      	; 0x22c <SSD_DisplayNum+0xde>
+ 22c:	00 00       	nop
+	
+	_delay_ms(1);
+	dio_vidWriteChannel(SSD_Enable2_port,SSD_Enable2_pin,STD_LOW) ;
+ 22e:	80 e0       	ldi	r24, 0x00	; 0
+ 230:	62 e0       	ldi	r22, 0x02	; 2
+ 232:	40 e0       	ldi	r20, 0x00	; 0
+ 234:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+		
+	// enable seconde digit
+	dio_vidWriteChannel(SSD_Enable3_port,SSD_Enable3_pin,STD_HIGH) ;
+ 238:	81 e0       	ldi	r24, 0x01	; 1
+ 23a:	65 e0       	ldi	r22, 0x05	; 5
+ 23c:	41 e0       	ldi	r20, 0x01	; 1
+ 23e:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+		
+	dio_vidWriteChannel(SSD_port,SSD_pin0,CHECK_BIT(num3,0)) ;
+ 242:	4c 2f       	mov	r20, r28
+ 244:	41 70       	andi	r20, 0x01	; 1
+ 246:	81 e0       	ldi	r24, 0x01	; 1
+ 248:	60 e0       	ldi	r22, 0x00	; 0
+ 24a:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+	dio_vidWriteChannel(SSD_port,SSD_pin1,CHECK_BIT(num3,1)) ;
+ 24e:	4c 2f       	mov	r20, r28
+ 250:	46 95       	lsr	r20
+ 252:	41 70       	andi	r20, 0x01	; 1
+ 254:	81 e0       	ldi	r24, 0x01	; 1
+ 256:	61 e0       	ldi	r22, 0x01	; 1
+ 258:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+	dio_vidWriteChannel(SSD_port,SSD_pin2,CHECK_BIT(num3,2)) ;
+ 25c:	4c 2f       	mov	r20, r28
+ 25e:	46 95       	lsr	r20
+ 260:	46 95       	lsr	r20
+ 262:	41 70       	andi	r20, 0x01	; 1
+ 264:	81 e0       	ldi	r24, 0x01	; 1
+ 266:	62 e0       	ldi	r22, 0x02	; 2
+ 268:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+	dio_vidWriteChannel(SSD_port,SSD_pin3,CHECK_BIT(num3,3)) ;
+ 26c:	c6 95       	lsr	r28
+ 26e:	c6 95       	lsr	r28
+ 270:	c6 95       	lsr	r28
+ 272:	4c 2f       	mov	r20, r28
+ 274:	41 70       	andi	r20, 0x01	; 1
+ 276:	81 e0       	ldi	r24, 0x01	; 1
+ 278:	64 e0       	ldi	r22, 0x04	; 4
+ 27a:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+ 27e:	8f ec       	ldi	r24, 0xCF	; 207
+ 280:	97 e0       	ldi	r25, 0x07	; 7
+ 282:	01 97       	sbiw	r24, 0x01	; 1
+ 284:	f1 f7       	brne	.-4      	; 0x282 <SSD_DisplayNum+0x134>
+ 286:	00 c0       	rjmp	.+0      	; 0x288 <SSD_DisplayNum+0x13a>
+ 288:	00 00       	nop
+	
+	
+	_delay_ms(1);
+	dio_vidWriteChannel(SSD_Enable3_port,SSD_Enable3_pin,STD_LOW) ;
+ 28a:	81 e0       	ldi	r24, 0x01	; 1
+ 28c:	65 e0       	ldi	r22, 0x05	; 5
+ 28e:	40 e0       	ldi	r20, 0x00	; 0
+ 290:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+		
+	// enable seconde digit
+	dio_vidWriteChannel(SSD_Enable4_port,SSD_Enable4_pin,STD_HIGH) ;
+ 294:	81 e0       	ldi	r24, 0x01	; 1
+ 296:	66 e0       	ldi	r22, 0x06	; 6
+ 298:	41 e0       	ldi	r20, 0x01	; 1
+ 29a:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+		
+	dio_vidWriteChannel(SSD_port,SSD_pin0,CHECK_BIT(last_num,0)) ;
+ 29e:	40 2f       	mov	r20, r16
+ 2a0:	41 70       	andi	r20, 0x01	; 1
+ 2a2:	81 e0       	ldi	r24, 0x01	; 1
+ 2a4:	60 e0       	ldi	r22, 0x00	; 0
+ 2a6:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+	dio_vidWriteChannel(SSD_port,SSD_pin1,CHECK_BIT(last_num,1)) ;
+ 2aa:	40 2f       	mov	r20, r16
+ 2ac:	46 95       	lsr	r20
+ 2ae:	41 70       	andi	r20, 0x01	; 1
+ 2b0:	81 e0       	ldi	r24, 0x01	; 1
+ 2b2:	61 e0       	ldi	r22, 0x01	; 1
+ 2b4:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+	dio_vidWriteChannel(SSD_port,SSD_pin2,CHECK_BIT(last_num,2)) ;
+ 2b8:	40 2f       	mov	r20, r16
+ 2ba:	46 95       	lsr	r20
+ 2bc:	46 95       	lsr	r20
+ 2be:	41 70       	andi	r20, 0x01	; 1
+ 2c0:	81 e0       	ldi	r24, 0x01	; 1
+ 2c2:	62 e0       	ldi	r22, 0x02	; 2
+ 2c4:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+	dio_vidWriteChannel(SSD_port,SSD_pin3,CHECK_BIT(last_num,3)) ;
+ 2c8:	06 95       	lsr	r16
+ 2ca:	06 95       	lsr	r16
+ 2cc:	06 95       	lsr	r16
+ 2ce:	40 2f       	mov	r20, r16
+ 2d0:	41 70       	andi	r20, 0x01	; 1
+ 2d2:	81 e0       	ldi	r24, 0x01	; 1
+ 2d4:	64 e0       	ldi	r22, 0x04	; 4
+ 2d6:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+ 2da:	8f ec       	ldi	r24, 0xCF	; 207
+ 2dc:	97 e0       	ldi	r25, 0x07	; 7
+ 2de:	01 97       	sbiw	r24, 0x01	; 1
+ 2e0:	f1 f7       	brne	.-4      	; 0x2de <SSD_DisplayNum+0x190>
+ 2e2:	00 c0       	rjmp	.+0      	; 0x2e4 <SSD_DisplayNum+0x196>
+ 2e4:	00 00       	nop
+	
+	_delay_ms(1);
+	dio_vidWriteChannel(SSD_Enable4_port,SSD_Enable4_pin,STD_LOW) ;
+ 2e6:	81 e0       	ldi	r24, 0x01	; 1
+ 2e8:	66 e0       	ldi	r22, 0x06	; 6
+ 2ea:	40 e0       	ldi	r20, 0x00	; 0
+ 2ec:	0e 94 fc 01 	call	0x3f8	; 0x3f8 <dio_vidWriteChannel>
+	
+}
+ 2f0:	df 91       	pop	r29
+ 2f2:	cf 91       	pop	r28
+ 2f4:	1f 91       	pop	r17
+ 2f6:	0f 91       	pop	r16
+ 2f8:	08 95       	ret
+
+000002fa <dio_vidConfigChannel>:
+					 direction -> MC channel direction
+* \Return value:   : None                            
+*******************************************************************************/
+void dio_vidConfigChannel(dio_portId_t port, dio_channelId_t channel, dio_direction_t direction)
+{
+	switch (port)
+ 2fa:	81 30       	cpi	r24, 0x01	; 1
+ 2fc:	31 f1       	breq	.+76     	; 0x34a <dio_vidConfigChannel+0x50>
+ 2fe:	81 30       	cpi	r24, 0x01	; 1
+ 300:	38 f0       	brcs	.+14     	; 0x310 <dio_vidConfigChannel+0x16>
+ 302:	82 30       	cpi	r24, 0x02	; 2
+ 304:	09 f4       	brne	.+2      	; 0x308 <dio_vidConfigChannel+0xe>
+ 306:	3e c0       	rjmp	.+124    	; 0x384 <dio_vidConfigChannel+0x8a>
+ 308:	83 30       	cpi	r24, 0x03	; 3
+ 30a:	09 f0       	breq	.+2      	; 0x30e <dio_vidConfigChannel+0x14>
+ 30c:	74 c0       	rjmp	.+232    	; 0x3f6 <dio_vidConfigChannel+0xfc>
+ 30e:	57 c0       	rjmp	.+174    	; 0x3be <dio_vidConfigChannel+0xc4>
+	{
+	case DIO_PORTA:
+		if (direction == OUTPUT)
+ 310:	41 30       	cpi	r20, 0x01	; 1
+ 312:	69 f4       	brne	.+26     	; 0x32e <dio_vidConfigChannel+0x34>
+		{
+			SET_BIT (DIO_DDRA_REG,channel);
+ 314:	2a b3       	in	r18, 0x1a	; 26
+ 316:	81 e0       	ldi	r24, 0x01	; 1
+ 318:	90 e0       	ldi	r25, 0x00	; 0
+ 31a:	ac 01       	movw	r20, r24
+ 31c:	02 c0       	rjmp	.+4      	; 0x322 <dio_vidConfigChannel+0x28>
+ 31e:	44 0f       	add	r20, r20
+ 320:	55 1f       	adc	r21, r21
+ 322:	6a 95       	dec	r22
+ 324:	e2 f7       	brpl	.-8      	; 0x31e <dio_vidConfigChannel+0x24>
+ 326:	ba 01       	movw	r22, r20
+ 328:	62 2b       	or	r22, r18
+ 32a:	6a bb       	out	0x1a, r22	; 26
+ 32c:	08 95       	ret
+		}
+		else
+		{
+			CLEAR_BIT (DIO_DDRA_REG,channel);
+ 32e:	2a b3       	in	r18, 0x1a	; 26
+ 330:	81 e0       	ldi	r24, 0x01	; 1
+ 332:	90 e0       	ldi	r25, 0x00	; 0
+ 334:	ac 01       	movw	r20, r24
+ 336:	02 c0       	rjmp	.+4      	; 0x33c <dio_vidConfigChannel+0x42>
+ 338:	44 0f       	add	r20, r20
+ 33a:	55 1f       	adc	r21, r21
+ 33c:	6a 95       	dec	r22
+ 33e:	e2 f7       	brpl	.-8      	; 0x338 <dio_vidConfigChannel+0x3e>
+ 340:	ba 01       	movw	r22, r20
+ 342:	60 95       	com	r22
+ 344:	62 23       	and	r22, r18
+ 346:	6a bb       	out	0x1a, r22	; 26
+ 348:	08 95       	ret
+		}
+		break;
+
+	case DIO_PORTB:
+		if (direction == OUTPUT)
+ 34a:	41 30       	cpi	r20, 0x01	; 1
+ 34c:	69 f4       	brne	.+26     	; 0x368 <dio_vidConfigChannel+0x6e>
+		{
+			SET_BIT (DIO_DDRB_REG,channel);
+ 34e:	27 b3       	in	r18, 0x17	; 23
+ 350:	81 e0       	ldi	r24, 0x01	; 1
+ 352:	90 e0       	ldi	r25, 0x00	; 0
+ 354:	ac 01       	movw	r20, r24
+ 356:	02 c0       	rjmp	.+4      	; 0x35c <dio_vidConfigChannel+0x62>
+ 358:	44 0f       	add	r20, r20
+ 35a:	55 1f       	adc	r21, r21
+ 35c:	6a 95       	dec	r22
+ 35e:	e2 f7       	brpl	.-8      	; 0x358 <dio_vidConfigChannel+0x5e>
+ 360:	ba 01       	movw	r22, r20
+ 362:	62 2b       	or	r22, r18
+ 364:	67 bb       	out	0x17, r22	; 23
+ 366:	08 95       	ret
+		}
+		else
+		{
+			CLEAR_BIT (DIO_DDRB_REG,channel);
+ 368:	27 b3       	in	r18, 0x17	; 23
+ 36a:	81 e0       	ldi	r24, 0x01	; 1
+ 36c:	90 e0       	ldi	r25, 0x00	; 0
+ 36e:	ac 01       	movw	r20, r24
+ 370:	02 c0       	rjmp	.+4      	; 0x376 <dio_vidConfigChannel+0x7c>
+ 372:	44 0f       	add	r20, r20
+ 374:	55 1f       	adc	r21, r21
+ 376:	6a 95       	dec	r22
+ 378:	e2 f7       	brpl	.-8      	; 0x372 <dio_vidConfigChannel+0x78>
+ 37a:	ba 01       	movw	r22, r20
+ 37c:	60 95       	com	r22
+ 37e:	62 23       	and	r22, r18
+ 380:	67 bb       	out	0x17, r22	; 23
+ 382:	08 95       	ret
+		}
+		break;
+
+	case DIO_PORTC:
+		if (direction == OUTPUT)
+ 384:	41 30       	cpi	r20, 0x01	; 1
+ 386:	69 f4       	brne	.+26     	; 0x3a2 <dio_vidConfigChannel+0xa8>
+		{
+			SET_BIT (DIO_DDRC_REG,channel);
+ 388:	24 b3       	in	r18, 0x14	; 20
+ 38a:	81 e0       	ldi	r24, 0x01	; 1
+ 38c:	90 e0       	ldi	r25, 0x00	; 0
+ 38e:	ac 01       	movw	r20, r24
+ 390:	02 c0       	rjmp	.+4      	; 0x396 <dio_vidConfigChannel+0x9c>
+ 392:	44 0f       	add	r20, r20
+ 394:	55 1f       	adc	r21, r21
+ 396:	6a 95       	dec	r22
+ 398:	e2 f7       	brpl	.-8      	; 0x392 <dio_vidConfigChannel+0x98>
+ 39a:	ba 01       	movw	r22, r20
+ 39c:	62 2b       	or	r22, r18
+ 39e:	64 bb       	out	0x14, r22	; 20
+ 3a0:	08 95       	ret
+		}
+		else
+		{
+			CLEAR_BIT (DIO_DDRC_REG,channel);
+ 3a2:	24 b3       	in	r18, 0x14	; 20
+ 3a4:	81 e0       	ldi	r24, 0x01	; 1
+ 3a6:	90 e0       	ldi	r25, 0x00	; 0
+ 3a8:	ac 01       	movw	r20, r24
+ 3aa:	02 c0       	rjmp	.+4      	; 0x3b0 <dio_vidConfigChannel+0xb6>
+ 3ac:	44 0f       	add	r20, r20
+ 3ae:	55 1f       	adc	r21, r21
+ 3b0:	6a 95       	dec	r22
+ 3b2:	e2 f7       	brpl	.-8      	; 0x3ac <dio_vidConfigChannel+0xb2>
+ 3b4:	ba 01       	movw	r22, r20
+ 3b6:	60 95       	com	r22
+ 3b8:	62 23       	and	r22, r18
+ 3ba:	64 bb       	out	0x14, r22	; 20
+ 3bc:	08 95       	ret
+		}
+		break;
+
+	case DIO_PORTD:
+		if (direction == OUTPUT)
+ 3be:	41 30       	cpi	r20, 0x01	; 1
+ 3c0:	69 f4       	brne	.+26     	; 0x3dc <dio_vidConfigChannel+0xe2>
+		{
+			SET_BIT (DIO_DDRD_REG,channel);
+ 3c2:	21 b3       	in	r18, 0x11	; 17
+ 3c4:	81 e0       	ldi	r24, 0x01	; 1
+ 3c6:	90 e0       	ldi	r25, 0x00	; 0
+ 3c8:	ac 01       	movw	r20, r24
+ 3ca:	02 c0       	rjmp	.+4      	; 0x3d0 <dio_vidConfigChannel+0xd6>
+ 3cc:	44 0f       	add	r20, r20
+ 3ce:	55 1f       	adc	r21, r21
+ 3d0:	6a 95       	dec	r22
+ 3d2:	e2 f7       	brpl	.-8      	; 0x3cc <dio_vidConfigChannel+0xd2>
+ 3d4:	ba 01       	movw	r22, r20
+ 3d6:	62 2b       	or	r22, r18
+ 3d8:	61 bb       	out	0x11, r22	; 17
+ 3da:	08 95       	ret
+		}
+		else
+		{
+			CLEAR_BIT (DIO_DDRD_REG,channel);
+ 3dc:	21 b3       	in	r18, 0x11	; 17
+ 3de:	81 e0       	ldi	r24, 0x01	; 1
+ 3e0:	90 e0       	ldi	r25, 0x00	; 0
+ 3e2:	ac 01       	movw	r20, r24
+ 3e4:	02 c0       	rjmp	.+4      	; 0x3ea <dio_vidConfigChannel+0xf0>
+ 3e6:	44 0f       	add	r20, r20
+ 3e8:	55 1f       	adc	r21, r21
+ 3ea:	6a 95       	dec	r22
+ 3ec:	e2 f7       	brpl	.-8      	; 0x3e6 <dio_vidConfigChannel+0xec>
+ 3ee:	ba 01       	movw	r22, r20
+ 3f0:	60 95       	com	r22
+ 3f2:	62 23       	and	r22, r18
+ 3f4:	61 bb       	out	0x11, r22	; 17
+ 3f6:	08 95       	ret
+
+000003f8 <dio_vidWriteChannel>:
+					 level    -> MC channel level
+* \Return value:   : None                            
+*******************************************************************************/
+void dio_vidWriteChannel(dio_portId_t port, dio_channelId_t channel, dio_level_t level)
+{
+	switch (port)
+ 3f8:	81 30       	cpi	r24, 0x01	; 1
+ 3fa:	31 f1       	breq	.+76     	; 0x448 <dio_vidWriteChannel+0x50>
+ 3fc:	81 30       	cpi	r24, 0x01	; 1
+ 3fe:	38 f0       	brcs	.+14     	; 0x40e <dio_vidWriteChannel+0x16>
+ 400:	82 30       	cpi	r24, 0x02	; 2
+ 402:	09 f4       	brne	.+2      	; 0x406 <dio_vidWriteChannel+0xe>
+ 404:	3e c0       	rjmp	.+124    	; 0x482 <dio_vidWriteChannel+0x8a>
+ 406:	83 30       	cpi	r24, 0x03	; 3
+ 408:	09 f0       	breq	.+2      	; 0x40c <dio_vidWriteChannel+0x14>
+ 40a:	74 c0       	rjmp	.+232    	; 0x4f4 <dio_vidWriteChannel+0xfc>
+ 40c:	57 c0       	rjmp	.+174    	; 0x4bc <dio_vidWriteChannel+0xc4>
+	{
+	case DIO_PORTA:
+		if (level == STD_LOW)
+ 40e:	44 23       	and	r20, r20
+ 410:	71 f4       	brne	.+28     	; 0x42e <dio_vidWriteChannel+0x36>
+		{
+			CLEAR_BIT(DIO_PORTA_REG,channel);
+ 412:	2b b3       	in	r18, 0x1b	; 27
+ 414:	81 e0       	ldi	r24, 0x01	; 1
+ 416:	90 e0       	ldi	r25, 0x00	; 0
+ 418:	ac 01       	movw	r20, r24
+ 41a:	02 c0       	rjmp	.+4      	; 0x420 <dio_vidWriteChannel+0x28>
+ 41c:	44 0f       	add	r20, r20
+ 41e:	55 1f       	adc	r21, r21
+ 420:	6a 95       	dec	r22
+ 422:	e2 f7       	brpl	.-8      	; 0x41c <dio_vidWriteChannel+0x24>
+ 424:	ba 01       	movw	r22, r20
+ 426:	60 95       	com	r22
+ 428:	62 23       	and	r22, r18
+ 42a:	6b bb       	out	0x1b, r22	; 27
+ 42c:	08 95       	ret
+		}
+		else
+		{
+			SET_BIT(DIO_PORTA_REG,channel);
+ 42e:	2b b3       	in	r18, 0x1b	; 27
+ 430:	81 e0       	ldi	r24, 0x01	; 1
+ 432:	90 e0       	ldi	r25, 0x00	; 0
+ 434:	ac 01       	movw	r20, r24
+ 436:	02 c0       	rjmp	.+4      	; 0x43c <dio_vidWriteChannel+0x44>
+ 438:	44 0f       	add	r20, r20
+ 43a:	55 1f       	adc	r21, r21
+ 43c:	6a 95       	dec	r22
+ 43e:	e2 f7       	brpl	.-8      	; 0x438 <dio_vidWriteChannel+0x40>
+ 440:	ba 01       	movw	r22, r20
+ 442:	62 2b       	or	r22, r18
+ 444:	6b bb       	out	0x1b, r22	; 27
+ 446:	08 95       	ret
+		}
+		break;
+
+	case DIO_PORTB:
+		if (level == STD_LOW)
+ 448:	44 23       	and	r20, r20
+ 44a:	71 f4       	brne	.+28     	; 0x468 <dio_vidWriteChannel+0x70>
+		{
+			CLEAR_BIT(DIO_PORTB_REG,channel);
+ 44c:	28 b3       	in	r18, 0x18	; 24
+ 44e:	81 e0       	ldi	r24, 0x01	; 1
+ 450:	90 e0       	ldi	r25, 0x00	; 0
+ 452:	ac 01       	movw	r20, r24
+ 454:	02 c0       	rjmp	.+4      	; 0x45a <dio_vidWriteChannel+0x62>
+ 456:	44 0f       	add	r20, r20
+ 458:	55 1f       	adc	r21, r21
+ 45a:	6a 95       	dec	r22
+ 45c:	e2 f7       	brpl	.-8      	; 0x456 <dio_vidWriteChannel+0x5e>
+ 45e:	ba 01       	movw	r22, r20
+ 460:	60 95       	com	r22
+ 462:	62 23       	and	r22, r18
+ 464:	68 bb       	out	0x18, r22	; 24
+ 466:	08 95       	ret
+		}
+		else
+		{
+			SET_BIT(DIO_PORTB_REG,channel);
+ 468:	28 b3       	in	r18, 0x18	; 24
+ 46a:	81 e0       	ldi	r24, 0x01	; 1
+ 46c:	90 e0       	ldi	r25, 0x00	; 0
+ 46e:	ac 01       	movw	r20, r24
+ 470:	02 c0       	rjmp	.+4      	; 0x476 <dio_vidWriteChannel+0x7e>
+ 472:	44 0f       	add	r20, r20
+ 474:	55 1f       	adc	r21, r21
+ 476:	6a 95       	dec	r22
+ 478:	e2 f7       	brpl	.-8      	; 0x472 <dio_vidWriteChannel+0x7a>
+ 47a:	ba 01       	movw	r22, r20
+ 47c:	62 2b       	or	r22, r18
+ 47e:	68 bb       	out	0x18, r22	; 24
+ 480:	08 95       	ret
+		}
+		break;
+
+	case DIO_PORTC:
+		if (level == STD_LOW)
+ 482:	44 23       	and	r20, r20
+ 484:	71 f4       	brne	.+28     	; 0x4a2 <dio_vidWriteChannel+0xaa>
+		{
+			CLEAR_BIT(DIO_PORTC_REG,channel);
+ 486:	25 b3       	in	r18, 0x15	; 21
+ 488:	81 e0       	ldi	r24, 0x01	; 1
+ 48a:	90 e0       	ldi	r25, 0x00	; 0
+ 48c:	ac 01       	movw	r20, r24
+ 48e:	02 c0       	rjmp	.+4      	; 0x494 <dio_vidWriteChannel+0x9c>
+ 490:	44 0f       	add	r20, r20
+ 492:	55 1f       	adc	r21, r21
+ 494:	6a 95       	dec	r22
+ 496:	e2 f7       	brpl	.-8      	; 0x490 <dio_vidWriteChannel+0x98>
+ 498:	ba 01       	movw	r22, r20
+ 49a:	60 95       	com	r22
+ 49c:	62 23       	and	r22, r18
+ 49e:	65 bb       	out	0x15, r22	; 21
+ 4a0:	08 95       	ret
+		}
+		else
+		{
+			SET_BIT(DIO_PORTC_REG,channel);
+ 4a2:	25 b3       	in	r18, 0x15	; 21
+ 4a4:	81 e0       	ldi	r24, 0x01	; 1
+ 4a6:	90 e0       	ldi	r25, 0x00	; 0
+ 4a8:	ac 01       	movw	r20, r24
+ 4aa:	02 c0       	rjmp	.+4      	; 0x4b0 <dio_vidWriteChannel+0xb8>
+ 4ac:	44 0f       	add	r20, r20
+ 4ae:	55 1f       	adc	r21, r21
+ 4b0:	6a 95       	dec	r22
+ 4b2:	e2 f7       	brpl	.-8      	; 0x4ac <dio_vidWriteChannel+0xb4>
+ 4b4:	ba 01       	movw	r22, r20
+ 4b6:	62 2b       	or	r22, r18
+ 4b8:	65 bb       	out	0x15, r22	; 21
+ 4ba:	08 95       	ret
+		}
+		break;
+
+	case DIO_PORTD:
+		if (level == STD_LOW)
+ 4bc:	44 23       	and	r20, r20
+ 4be:	71 f4       	brne	.+28     	; 0x4dc <dio_vidWriteChannel+0xe4>
+		{
+			CLEAR_BIT(DIO_PORTD_REG,channel);
+ 4c0:	22 b3       	in	r18, 0x12	; 18
+ 4c2:	81 e0       	ldi	r24, 0x01	; 1
+ 4c4:	90 e0       	ldi	r25, 0x00	; 0
+ 4c6:	ac 01       	movw	r20, r24
+ 4c8:	02 c0       	rjmp	.+4      	; 0x4ce <dio_vidWriteChannel+0xd6>
+ 4ca:	44 0f       	add	r20, r20
+ 4cc:	55 1f       	adc	r21, r21
+ 4ce:	6a 95       	dec	r22
+ 4d0:	e2 f7       	brpl	.-8      	; 0x4ca <dio_vidWriteChannel+0xd2>
+ 4d2:	ba 01       	movw	r22, r20
+ 4d4:	60 95       	com	r22
+ 4d6:	62 23       	and	r22, r18
+ 4d8:	62 bb       	out	0x12, r22	; 18
+ 4da:	08 95       	ret
+		}
+		else
+		{
+			SET_BIT(DIO_PORTD_REG,channel);
+ 4dc:	22 b3       	in	r18, 0x12	; 18
+ 4de:	81 e0       	ldi	r24, 0x01	; 1
+ 4e0:	90 e0       	ldi	r25, 0x00	; 0
+ 4e2:	ac 01       	movw	r20, r24
+ 4e4:	02 c0       	rjmp	.+4      	; 0x4ea <dio_vidWriteChannel+0xf2>
+ 4e6:	44 0f       	add	r20, r20
+ 4e8:	55 1f       	adc	r21, r21
+ 4ea:	6a 95       	dec	r22
+ 4ec:	e2 f7       	brpl	.-8      	; 0x4e6 <dio_vidWriteChannel+0xee>
+ 4ee:	ba 01       	movw	r22, r20
+ 4f0:	62 2b       	or	r22, r18
+ 4f2:	62 bb       	out	0x12, r22	; 18
+ 4f4:	08 95       	ret
+
+000004f6 <dio_vidWriteChannelGroup>:
+*******************************************************************************/
+void dio_vidWriteChannelGroup(dio_portId_t port,u8 value,u8 mask)
+{
+	/*	show me your code */
+	
+}
+ 4f6:	08 95       	ret
+
+000004f8 <dio_vidFlipChannel>:
+					 channel  -> MC channel ID
+* \Return value:   : None                            
+*******************************************************************************/
+void dio_vidFlipChannel(dio_portId_t port, dio_channelId_t channel)
+{
+	switch (port)
+ 4f8:	81 30       	cpi	r24, 0x01	; 1
+ 4fa:	a1 f0       	breq	.+40     	; 0x524 <dio_vidFlipChannel+0x2c>
+ 4fc:	81 30       	cpi	r24, 0x01	; 1
+ 4fe:	28 f0       	brcs	.+10     	; 0x50a <dio_vidFlipChannel+0x12>
+ 500:	82 30       	cpi	r24, 0x02	; 2
+ 502:	e9 f0       	breq	.+58     	; 0x53e <dio_vidFlipChannel+0x46>
+ 504:	83 30       	cpi	r24, 0x03	; 3
+ 506:	a1 f5       	brne	.+104    	; 0x570 <dio_vidFlipChannel+0x78>
+ 508:	27 c0       	rjmp	.+78     	; 0x558 <dio_vidFlipChannel+0x60>
+	{
+	case DIO_PORTA:
+		FLIP_BIT(DIO_PORTA_REG,channel);
+ 50a:	2b b3       	in	r18, 0x1b	; 27
+ 50c:	81 e0       	ldi	r24, 0x01	; 1
+ 50e:	90 e0       	ldi	r25, 0x00	; 0
+ 510:	ac 01       	movw	r20, r24
+ 512:	02 c0       	rjmp	.+4      	; 0x518 <dio_vidFlipChannel+0x20>
+ 514:	44 0f       	add	r20, r20
+ 516:	55 1f       	adc	r21, r21
+ 518:	6a 95       	dec	r22
+ 51a:	e2 f7       	brpl	.-8      	; 0x514 <dio_vidFlipChannel+0x1c>
+ 51c:	ba 01       	movw	r22, r20
+ 51e:	62 27       	eor	r22, r18
+ 520:	6b bb       	out	0x1b, r22	; 27
+		break;
+ 522:	08 95       	ret
+
+	case DIO_PORTB:
+		FLIP_BIT(DIO_PORTB_REG,channel);
+ 524:	28 b3       	in	r18, 0x18	; 24
+ 526:	81 e0       	ldi	r24, 0x01	; 1
+ 528:	90 e0       	ldi	r25, 0x00	; 0
+ 52a:	ac 01       	movw	r20, r24
+ 52c:	02 c0       	rjmp	.+4      	; 0x532 <dio_vidFlipChannel+0x3a>
+ 52e:	44 0f       	add	r20, r20
+ 530:	55 1f       	adc	r21, r21
+ 532:	6a 95       	dec	r22
+ 534:	e2 f7       	brpl	.-8      	; 0x52e <dio_vidFlipChannel+0x36>
+ 536:	ba 01       	movw	r22, r20
+ 538:	62 27       	eor	r22, r18
+ 53a:	68 bb       	out	0x18, r22	; 24
+		break;
+ 53c:	08 95       	ret
+
+	case DIO_PORTC:
+		FLIP_BIT(DIO_PORTC_REG,channel);
+ 53e:	25 b3       	in	r18, 0x15	; 21
+ 540:	81 e0       	ldi	r24, 0x01	; 1
+ 542:	90 e0       	ldi	r25, 0x00	; 0
+ 544:	ac 01       	movw	r20, r24
+ 546:	02 c0       	rjmp	.+4      	; 0x54c <dio_vidFlipChannel+0x54>
+ 548:	44 0f       	add	r20, r20
+ 54a:	55 1f       	adc	r21, r21
+ 54c:	6a 95       	dec	r22
+ 54e:	e2 f7       	brpl	.-8      	; 0x548 <dio_vidFlipChannel+0x50>
+ 550:	ba 01       	movw	r22, r20
+ 552:	62 27       	eor	r22, r18
+ 554:	65 bb       	out	0x15, r22	; 21
+		break;
+ 556:	08 95       	ret
+
+	case DIO_PORTD:
+		FLIP_BIT(DIO_PORTD_REG,channel);
+ 558:	22 b3       	in	r18, 0x12	; 18
+ 55a:	81 e0       	ldi	r24, 0x01	; 1
+ 55c:	90 e0       	ldi	r25, 0x00	; 0
+ 55e:	ac 01       	movw	r20, r24
+ 560:	02 c0       	rjmp	.+4      	; 0x566 <dio_vidFlipChannel+0x6e>
+ 562:	44 0f       	add	r20, r20
+ 564:	55 1f       	adc	r21, r21
+ 566:	6a 95       	dec	r22
+ 568:	e2 f7       	brpl	.-8      	; 0x562 <dio_vidFlipChannel+0x6a>
+ 56a:	ba 01       	movw	r22, r20
+ 56c:	62 27       	eor	r22, r18
+ 56e:	62 bb       	out	0x12, r22	; 18
+ 570:	08 95       	ret
+
+00000572 <dio_dioLevelReadChannel>:
+* \Return value:   : loc_pinRead   -> IO channel level                           
+*******************************************************************************/
+dio_level_t dio_dioLevelReadChannel(dio_portId_t port, dio_channelId_t channel)
+{
+	dio_level_t loc_pinRead = STD_LOW;
+	switch (port)
+ 572:	81 30       	cpi	r24, 0x01	; 1
+ 574:	89 f0       	breq	.+34     	; 0x598 <dio_dioLevelReadChannel+0x26>
+ 576:	81 30       	cpi	r24, 0x01	; 1
+ 578:	28 f0       	brcs	.+10     	; 0x584 <dio_dioLevelReadChannel+0x12>
+ 57a:	82 30       	cpi	r24, 0x02	; 2
+ 57c:	b9 f0       	breq	.+46     	; 0x5ac <dio_dioLevelReadChannel+0x3a>
+ 57e:	83 30       	cpi	r24, 0x03	; 3
+ 580:	49 f5       	brne	.+82     	; 0x5d4 <dio_dioLevelReadChannel+0x62>
+ 582:	1e c0       	rjmp	.+60     	; 0x5c0 <dio_dioLevelReadChannel+0x4e>
+	{
+	 case DIO_PORTA:
+		loc_pinRead = CHECK_BIT(DIO_PINA_REG, channel);
+ 584:	29 b3       	in	r18, 0x19	; 25
+ 586:	30 e0       	ldi	r19, 0x00	; 0
+ 588:	c9 01       	movw	r24, r18
+ 58a:	02 c0       	rjmp	.+4      	; 0x590 <dio_dioLevelReadChannel+0x1e>
+ 58c:	95 95       	asr	r25
+ 58e:	87 95       	ror	r24
+ 590:	6a 95       	dec	r22
+ 592:	e2 f7       	brpl	.-8      	; 0x58c <dio_dioLevelReadChannel+0x1a>
+ 594:	81 70       	andi	r24, 0x01	; 1
+		break;
+ 596:	08 95       	ret
+
+	 case DIO_PORTB:
+		loc_pinRead = CHECK_BIT(DIO_PINB_REG, channel);
+ 598:	26 b3       	in	r18, 0x16	; 22
+ 59a:	30 e0       	ldi	r19, 0x00	; 0
+ 59c:	c9 01       	movw	r24, r18
+ 59e:	02 c0       	rjmp	.+4      	; 0x5a4 <dio_dioLevelReadChannel+0x32>
+ 5a0:	95 95       	asr	r25
+ 5a2:	87 95       	ror	r24
+ 5a4:	6a 95       	dec	r22
+ 5a6:	e2 f7       	brpl	.-8      	; 0x5a0 <dio_dioLevelReadChannel+0x2e>
+ 5a8:	81 70       	andi	r24, 0x01	; 1
+		break;
+ 5aa:	08 95       	ret
+
+	 case DIO_PORTC:
+		loc_pinRead = CHECK_BIT(DIO_PINC_REG, channel);
+ 5ac:	23 b3       	in	r18, 0x13	; 19
+ 5ae:	30 e0       	ldi	r19, 0x00	; 0
+ 5b0:	c9 01       	movw	r24, r18
+ 5b2:	02 c0       	rjmp	.+4      	; 0x5b8 <dio_dioLevelReadChannel+0x46>
+ 5b4:	95 95       	asr	r25
+ 5b6:	87 95       	ror	r24
+ 5b8:	6a 95       	dec	r22
+ 5ba:	e2 f7       	brpl	.-8      	; 0x5b4 <dio_dioLevelReadChannel+0x42>
+ 5bc:	81 70       	andi	r24, 0x01	; 1
+		break;
+ 5be:	08 95       	ret
+
+	 case DIO_PORTD:
+		loc_pinRead = CHECK_BIT(DIO_PIND_REG, channel);
+ 5c0:	20 b3       	in	r18, 0x10	; 16
+ 5c2:	30 e0       	ldi	r19, 0x00	; 0
+ 5c4:	c9 01       	movw	r24, r18
+ 5c6:	02 c0       	rjmp	.+4      	; 0x5cc <dio_dioLevelReadChannel+0x5a>
+ 5c8:	95 95       	asr	r25
+ 5ca:	87 95       	ror	r24
+ 5cc:	6a 95       	dec	r22
+ 5ce:	e2 f7       	brpl	.-8      	; 0x5c8 <dio_dioLevelReadChannel+0x56>
+ 5d0:	81 70       	andi	r24, 0x01	; 1
+		break;
+ 5d2:	08 95       	ret
+					 channel  -> MC channel ID
+* \Return value:   : loc_pinRead   -> IO channel level                           
+*******************************************************************************/
+dio_level_t dio_dioLevelReadChannel(dio_portId_t port, dio_channelId_t channel)
+{
+	dio_level_t loc_pinRead = STD_LOW;
+ 5d4:	80 e0       	ldi	r24, 0x00	; 0
+	 case DIO_PORTD:
+		loc_pinRead = CHECK_BIT(DIO_PIND_REG, channel);
+		break;
+    }
+	return loc_pinRead;
+}
+ 5d6:	08 95       	ret
+
+000005d8 <dio_vidEnablePullUp>:
+*******************************************************************************/
+void dio_vidEnablePullUp(dio_portId_t port, dio_channelId_t channel)
+{
+	/*	show me your code */	
+	
+}
+ 5d8:	08 95       	ret
+
+000005da <get_pressed>:
+
+
+
+u8 get_pressed() 
+{   static u8 flag = 1 ;
+	 if(Button_GetStatus(BUTTON0))
+ 5da:	80 e0       	ldi	r24, 0x00	; 0
+ 5dc:	0e 94 59 00 	call	0xb2	; 0xb2 <Button_GetStatus>
+ 5e0:	88 23       	and	r24, r24
+ 5e2:	69 f0       	breq	.+26     	; 0x5fe <get_pressed+0x24>
+	 {
+		 flag = 1 ;
+ 5e4:	81 e0       	ldi	r24, 0x01	; 1
+ 5e6:	80 93 60 00 	sts	0x0060, r24
+ 5ea:	8f ef       	ldi	r24, 0xFF	; 255
+ 5ec:	90 e7       	ldi	r25, 0x70	; 112
+ 5ee:	a2 e0       	ldi	r26, 0x02	; 2
+ 5f0:	81 50       	subi	r24, 0x01	; 1
+ 5f2:	90 40       	sbci	r25, 0x00	; 0
+ 5f4:	a0 40       	sbci	r26, 0x00	; 0
+ 5f6:	e1 f7       	brne	.-8      	; 0x5f0 <get_pressed+0x16>
+ 5f8:	00 c0       	rjmp	.+0      	; 0x5fa <get_pressed+0x20>
+ 5fa:	00 00       	nop
+ 5fc:	10 c0       	rjmp	.+32     	; 0x61e <get_pressed+0x44>
+		 _delay_ms(100) ;
+	 }
+	 else if(Button_GetStatus(BUTTON1))
+ 5fe:	81 e0       	ldi	r24, 0x01	; 1
+ 600:	0e 94 59 00 	call	0xb2	; 0xb2 <Button_GetStatus>
+ 604:	88 23       	and	r24, r24
+ 606:	59 f0       	breq	.+22     	; 0x61e <get_pressed+0x44>
+	 {
+		 flag = 0 ;
+ 608:	10 92 60 00 	sts	0x0060, r1
+ 60c:	8f ef       	ldi	r24, 0xFF	; 255
+ 60e:	90 e7       	ldi	r25, 0x70	; 112
+ 610:	a2 e0       	ldi	r26, 0x02	; 2
+ 612:	81 50       	subi	r24, 0x01	; 1
+ 614:	90 40       	sbci	r25, 0x00	; 0
+ 616:	a0 40       	sbci	r26, 0x00	; 0
+ 618:	e1 f7       	brne	.-8      	; 0x612 <get_pressed+0x38>
+ 61a:	00 c0       	rjmp	.+0      	; 0x61c <get_pressed+0x42>
+ 61c:	00 00       	nop
+		 _delay_ms(100) ;
+	 }
+	 
+	return flag ;
+}
+ 61e:	80 91 60 00 	lds	r24, 0x0060
+ 622:	08 95       	ret
+
+00000624 <show_num>:
+
+void show_num(u8 num)
+{  u8 i ;
+ 624:	cf 93       	push	r28
+ 626:	df 93       	push	r29
+ 628:	d8 2f       	mov	r29, r24
+ 62a:	c5 e0       	ldi	r28, 0x05	; 5
+	for ( i = 0 ;i<5 ; i++)
+	{
+		SSD_DisplayNum(num)  ;
+ 62c:	8d 2f       	mov	r24, r29
+ 62e:	90 e0       	ldi	r25, 0x00	; 0
+ 630:	0e 94 a7 00 	call	0x14e	; 0x14e <SSD_DisplayNum>
+ 634:	8f ef       	ldi	r24, 0xFF	; 255
+ 636:	99 ef       	ldi	r25, 0xF9	; 249
+ 638:	a0 e0       	ldi	r26, 0x00	; 0
+ 63a:	81 50       	subi	r24, 0x01	; 1
+ 63c:	90 40       	sbci	r25, 0x00	; 0
+ 63e:	a0 40       	sbci	r26, 0x00	; 0
+ 640:	e1 f7       	brne	.-8      	; 0x63a <show_num+0x16>
+ 642:	00 c0       	rjmp	.+0      	; 0x644 <show_num+0x20>
+ 644:	00 00       	nop
+ 646:	c1 50       	subi	r28, 0x01	; 1
+	return flag ;
+}
+
+void show_num(u8 num)
+{  u8 i ;
+	for ( i = 0 ;i<5 ; i++)
+ 648:	89 f7       	brne	.-30     	; 0x62c <show_num+0x8>
+	{
+		SSD_DisplayNum(num)  ;
+		_delay_ms(40) ;
+	}
+	
+}
+ 64a:	df 91       	pop	r29
+ 64c:	cf 91       	pop	r28
+ 64e:	08 95       	ret
+
+00000650 <main>:
+int main(void)
+{
+	button_vidInit();
+ 650:	0e 94 49 00 	call	0x92	; 0x92 <button_vidInit>
+	SSD_vidInit() ;
+ 654:	0e 94 7e 00 	call	0xfc	; 0xfc <SSD_vidInit>
+	u8 counter = 0 ;
+	u8 flag = 1 ; 
+ 658:	d1 e0       	ldi	r29, 0x01	; 1
+}
+int main(void)
+{
+	button_vidInit();
+	SSD_vidInit() ;
+	u8 counter = 0 ;
+ 65a:	c0 e0       	ldi	r28, 0x00	; 0
+			if(counter == 99 ) counter = 0 ;
+		}
+		else
+		{
+			counter-- ; 
+			if(counter ==0) counter = 99 ;
+ 65c:	13 e6       	ldi	r17, 0x63	; 99
+		get_pressed();
+		
+		if(flag==1 ) 
+		{
+			counter++ ;
+			if(counter == 99 ) counter = 0 ;
+ 65e:	00 e0       	ldi	r16, 0x00	; 0
+	u8 flag = 1 ; 
+	
+    while(1)
+    {  
+		
+		get_pressed();
+ 660:	0e 94 ed 02 	call	0x5da	; 0x5da <get_pressed>
+		
+		if(flag==1 ) 
+ 664:	d1 30       	cpi	r29, 0x01	; 1
+ 666:	21 f4       	brne	.+8      	; 0x670 <main+0x20>
+		{
+			counter++ ;
+ 668:	cf 5f       	subi	r28, 0xFF	; 255
+			if(counter == 99 ) counter = 0 ;
+ 66a:	c3 36       	cpi	r28, 0x63	; 99
+ 66c:	39 f4       	brne	.+14     	; 0x67c <main+0x2c>
+ 66e:	03 c0       	rjmp	.+6      	; 0x676 <main+0x26>
+		}
+		else
+		{
+			counter-- ; 
+ 670:	c1 50       	subi	r28, 0x01	; 1
+			if(counter ==0) counter = 99 ;
+ 672:	19 f0       	breq	.+6      	; 0x67a <main+0x2a>
+ 674:	03 c0       	rjmp	.+6      	; 0x67c <main+0x2c>
+		get_pressed();
+		
+		if(flag==1 ) 
+		{
+			counter++ ;
+			if(counter == 99 ) counter = 0 ;
+ 676:	c0 2f       	mov	r28, r16
+ 678:	01 c0       	rjmp	.+2      	; 0x67c <main+0x2c>
+		}
+		else
+		{
+			counter-- ; 
+			if(counter ==0) counter = 99 ;
+ 67a:	c1 2f       	mov	r28, r17
+			
+		}
+		
+		flag =  get_pressed();
+ 67c:	0e 94 ed 02 	call	0x5da	; 0x5da <get_pressed>
+		show_num(counter) ;
+ 680:	8c 2f       	mov	r24, r28
+ 682:	0e 94 12 03 	call	0x624	; 0x624 <show_num>
+		flag =  get_pressed();
+ 686:	0e 94 ed 02 	call	0x5da	; 0x5da <get_pressed>
+		show_num(counter) ;
+ 68a:	8c 2f       	mov	r24, r28
+ 68c:	0e 94 12 03 	call	0x624	; 0x624 <show_num>
+		flag = get_pressed();
+ 690:	0e 94 ed 02 	call	0x5da	; 0x5da <get_pressed>
+		show_num(counter) ;
+ 694:	8c 2f       	mov	r24, r28
+ 696:	0e 94 12 03 	call	0x624	; 0x624 <show_num>
+		flag = get_pressed();
+ 69a:	0e 94 ed 02 	call	0x5da	; 0x5da <get_pressed>
+ 69e:	d8 2f       	mov	r29, r24
+		show_num(counter) ;
+ 6a0:	8c 2f       	mov	r24, r28
+ 6a2:	0e 94 12 03 	call	0x624	; 0x624 <show_num>
+        //TODO:: Please write your application code 
+    }
+ 6a6:	dc cf       	rjmp	.-72     	; 0x660 <main+0x10>
+
+000006a8 <__udivmodhi4>:
+ 6a8:	aa 1b       	sub	r26, r26
+ 6aa:	bb 1b       	sub	r27, r27
+ 6ac:	51 e1       	ldi	r21, 0x11	; 17
+ 6ae:	07 c0       	rjmp	.+14     	; 0x6be <__udivmodhi4_ep>
+
+000006b0 <__udivmodhi4_loop>:
+ 6b0:	aa 1f       	adc	r26, r26
+ 6b2:	bb 1f       	adc	r27, r27
+ 6b4:	a6 17       	cp	r26, r22
+ 6b6:	b7 07       	cpc	r27, r23
+ 6b8:	10 f0       	brcs	.+4      	; 0x6be <__udivmodhi4_ep>
+ 6ba:	a6 1b       	sub	r26, r22
+ 6bc:	b7 0b       	sbc	r27, r23
+
+000006be <__udivmodhi4_ep>:
+ 6be:	88 1f       	adc	r24, r24
+ 6c0:	99 1f       	adc	r25, r25
+ 6c2:	5a 95       	dec	r21
+ 6c4:	a9 f7       	brne	.-22     	; 0x6b0 <__udivmodhi4_loop>
+ 6c6:	80 95       	com	r24
+ 6c8:	90 95       	com	r25
+ 6ca:	bc 01       	movw	r22, r24
+ 6cc:	cd 01       	movw	r24, r26
+ 6ce:	08 95       	ret
+
+000006d0 <_exit>:
+ 6d0:	f8 94       	cli
+
+000006d2 <__stop_program>:
+ 6d2:	ff cf       	rjmp	.-2      	; 0x6d2 <__stop_program>

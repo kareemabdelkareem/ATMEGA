@@ -1,0 +1,1180 @@
+
+task2.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000608  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000008  00800060  00000608  0000069c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000001  00800068  00800068  000006a4  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  000006a4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000085  00000000  00000000  00000d70  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 000000e0  00000000  00000000  00000df8  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000b18  00000000  00000000  00000ed8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000037f  00000000  00000000  000019f0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   0000052f  00000000  00000000  00001d6f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  0000014c  00000000  00000000  000022a0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000003a8  00000000  00000000  000023ec  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000678  00000000  00000000  00002794  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e8 e0       	ldi	r30, 0x08	; 8
+  68:	f6 e0       	ldi	r31, 0x06	; 6
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a8 36       	cpi	r26, 0x68	; 104
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	a8 e6       	ldi	r26, 0x68	; 104
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a9 36       	cpi	r26, 0x69	; 105
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 e9 02 	call	0x5d2	; 0x5d2 <main>
+  8a:	0c 94 02 03 	jmp	0x604	; 0x604 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <button_vidInit>:
+* \Parameters (in) : None                                                                            
+* \Return value:   : None                                
+*******************************************************************************/
+void button_vidInit(void)
+{
+	dio_vidConfigChannel(BUTTON0_PORT,BUTTON0_PIN,INPUT);
+  92:	83 e0       	ldi	r24, 0x03	; 3
+  94:	67 e0       	ldi	r22, 0x07	; 7
+  96:	40 e0       	ldi	r20, 0x00	; 0
+  98:	0e 94 7e 00 	call	0xfc	; 0xfc <dio_vidConfigChannel>
+	dio_vidConfigChannel(BUTTON1_PORT,BUTTON1_PIN,INPUT);
+  9c:	83 e0       	ldi	r24, 0x03	; 3
+  9e:	66 e0       	ldi	r22, 0x06	; 6
+  a0:	40 e0       	ldi	r20, 0x00	; 0
+  a2:	0e 94 7e 00 	call	0xfc	; 0xfc <dio_vidConfigChannel>
+	dio_vidConfigChannel(BUTTON2_PORT,BUTTON2_PIN,INPUT);
+  a6:	83 e0       	ldi	r24, 0x03	; 3
+  a8:	65 e0       	ldi	r22, 0x05	; 5
+  aa:	40 e0       	ldi	r20, 0x00	; 0
+  ac:	0e 94 7e 00 	call	0xfc	; 0xfc <dio_vidConfigChannel>
+}
+  b0:	08 95       	ret
+
+000000b2 <Button_GetStatus>:
+*                                     RELEASED                                  
+*******************************************************************************/
+button_status_t Button_GetStatus(button_id_t button)
+{
+	button_status_t status = RELEASED;
+	switch (button)
+  b2:	81 30       	cpi	r24, 0x01	; 1
+  b4:	71 f0       	breq	.+28     	; 0xd2 <Button_GetStatus+0x20>
+  b6:	81 30       	cpi	r24, 0x01	; 1
+  b8:	18 f0       	brcs	.+6      	; 0xc0 <Button_GetStatus+0xe>
+  ba:	82 30       	cpi	r24, 0x02	; 2
+  bc:	e1 f4       	brne	.+56     	; 0xf6 <Button_GetStatus+0x44>
+  be:	12 c0       	rjmp	.+36     	; 0xe4 <Button_GetStatus+0x32>
+			status = RELEASED;
+		}
+
+#else
+		/*	PULL UP	*/
+		if (dio_dioLevelReadChannel(BUTTON0_PORT,BUTTON0_PIN) == STD_LOW)
+  c0:	83 e0       	ldi	r24, 0x03	; 3
+  c2:	67 e0       	ldi	r22, 0x07	; 7
+  c4:	0e 94 ba 01 	call	0x374	; 0x374 <dio_dioLevelReadChannel>
+* \Return value:   : button_status_t  PRESSED
+*                                     RELEASED                                  
+*******************************************************************************/
+button_status_t Button_GetStatus(button_id_t button)
+{
+	button_status_t status = RELEASED;
+  c8:	91 e0       	ldi	r25, 0x01	; 1
+  ca:	88 23       	and	r24, r24
+  cc:	a9 f0       	breq	.+42     	; 0xf8 <Button_GetStatus+0x46>
+  ce:	90 e0       	ldi	r25, 0x00	; 0
+  d0:	13 c0       	rjmp	.+38     	; 0xf8 <Button_GetStatus+0x46>
+			status = RELEASED;
+		}
+
+#else
+		/*	PULL UP	*/
+		if (dio_dioLevelReadChannel(BUTTON1_PORT,BUTTON1_PIN) == STD_LOW)
+  d2:	83 e0       	ldi	r24, 0x03	; 3
+  d4:	66 e0       	ldi	r22, 0x06	; 6
+  d6:	0e 94 ba 01 	call	0x374	; 0x374 <dio_dioLevelReadChannel>
+* \Return value:   : button_status_t  PRESSED
+*                                     RELEASED                                  
+*******************************************************************************/
+button_status_t Button_GetStatus(button_id_t button)
+{
+	button_status_t status = RELEASED;
+  da:	91 e0       	ldi	r25, 0x01	; 1
+  dc:	88 23       	and	r24, r24
+  de:	61 f0       	breq	.+24     	; 0xf8 <Button_GetStatus+0x46>
+  e0:	90 e0       	ldi	r25, 0x00	; 0
+  e2:	0a c0       	rjmp	.+20     	; 0xf8 <Button_GetStatus+0x46>
+			status = RELEASED;
+		}
+
+#else
+		/*	PULL UP	*/
+		if (dio_dioLevelReadChannel(BUTTON2_PORT,BUTTON2_PIN) == STD_LOW)
+  e4:	83 e0       	ldi	r24, 0x03	; 3
+  e6:	65 e0       	ldi	r22, 0x05	; 5
+  e8:	0e 94 ba 01 	call	0x374	; 0x374 <dio_dioLevelReadChannel>
+* \Return value:   : button_status_t  PRESSED
+*                                     RELEASED                                  
+*******************************************************************************/
+button_status_t Button_GetStatus(button_id_t button)
+{
+	button_status_t status = RELEASED;
+  ec:	91 e0       	ldi	r25, 0x01	; 1
+  ee:	88 23       	and	r24, r24
+  f0:	19 f0       	breq	.+6      	; 0xf8 <Button_GetStatus+0x46>
+  f2:	90 e0       	ldi	r25, 0x00	; 0
+  f4:	01 c0       	rjmp	.+2      	; 0xf8 <Button_GetStatus+0x46>
+  f6:	90 e0       	ldi	r25, 0x00	; 0
+		}
+#endif
+		break;
+	}
+	return status;
+}
+  f8:	89 2f       	mov	r24, r25
+  fa:	08 95       	ret
+
+000000fc <dio_vidConfigChannel>:
+					 direction -> MC channel direction
+* \Return value:   : None                            
+*******************************************************************************/
+void dio_vidConfigChannel(dio_portId_t port, dio_channelId_t channel, dio_direction_t direction)
+{
+	switch (port)
+  fc:	81 30       	cpi	r24, 0x01	; 1
+  fe:	31 f1       	breq	.+76     	; 0x14c <dio_vidConfigChannel+0x50>
+ 100:	81 30       	cpi	r24, 0x01	; 1
+ 102:	38 f0       	brcs	.+14     	; 0x112 <dio_vidConfigChannel+0x16>
+ 104:	82 30       	cpi	r24, 0x02	; 2
+ 106:	09 f4       	brne	.+2      	; 0x10a <dio_vidConfigChannel+0xe>
+ 108:	3e c0       	rjmp	.+124    	; 0x186 <dio_vidConfigChannel+0x8a>
+ 10a:	83 30       	cpi	r24, 0x03	; 3
+ 10c:	09 f0       	breq	.+2      	; 0x110 <dio_vidConfigChannel+0x14>
+ 10e:	74 c0       	rjmp	.+232    	; 0x1f8 <dio_vidConfigChannel+0xfc>
+ 110:	57 c0       	rjmp	.+174    	; 0x1c0 <dio_vidConfigChannel+0xc4>
+	{
+	case DIO_PORTA:
+		if (direction == OUTPUT)
+ 112:	41 30       	cpi	r20, 0x01	; 1
+ 114:	69 f4       	brne	.+26     	; 0x130 <dio_vidConfigChannel+0x34>
+		{
+			SET_BIT (DIO_DDRA_REG,channel);
+ 116:	2a b3       	in	r18, 0x1a	; 26
+ 118:	81 e0       	ldi	r24, 0x01	; 1
+ 11a:	90 e0       	ldi	r25, 0x00	; 0
+ 11c:	ac 01       	movw	r20, r24
+ 11e:	02 c0       	rjmp	.+4      	; 0x124 <dio_vidConfigChannel+0x28>
+ 120:	44 0f       	add	r20, r20
+ 122:	55 1f       	adc	r21, r21
+ 124:	6a 95       	dec	r22
+ 126:	e2 f7       	brpl	.-8      	; 0x120 <dio_vidConfigChannel+0x24>
+ 128:	ba 01       	movw	r22, r20
+ 12a:	62 2b       	or	r22, r18
+ 12c:	6a bb       	out	0x1a, r22	; 26
+ 12e:	08 95       	ret
+		}
+		else
+		{
+			CLEAR_BIT (DIO_DDRA_REG,channel);
+ 130:	2a b3       	in	r18, 0x1a	; 26
+ 132:	81 e0       	ldi	r24, 0x01	; 1
+ 134:	90 e0       	ldi	r25, 0x00	; 0
+ 136:	ac 01       	movw	r20, r24
+ 138:	02 c0       	rjmp	.+4      	; 0x13e <dio_vidConfigChannel+0x42>
+ 13a:	44 0f       	add	r20, r20
+ 13c:	55 1f       	adc	r21, r21
+ 13e:	6a 95       	dec	r22
+ 140:	e2 f7       	brpl	.-8      	; 0x13a <dio_vidConfigChannel+0x3e>
+ 142:	ba 01       	movw	r22, r20
+ 144:	60 95       	com	r22
+ 146:	62 23       	and	r22, r18
+ 148:	6a bb       	out	0x1a, r22	; 26
+ 14a:	08 95       	ret
+		}
+		break;
+
+	case DIO_PORTB:
+		if (direction == OUTPUT)
+ 14c:	41 30       	cpi	r20, 0x01	; 1
+ 14e:	69 f4       	brne	.+26     	; 0x16a <dio_vidConfigChannel+0x6e>
+		{
+			SET_BIT (DIO_DDRB_REG,channel);
+ 150:	27 b3       	in	r18, 0x17	; 23
+ 152:	81 e0       	ldi	r24, 0x01	; 1
+ 154:	90 e0       	ldi	r25, 0x00	; 0
+ 156:	ac 01       	movw	r20, r24
+ 158:	02 c0       	rjmp	.+4      	; 0x15e <dio_vidConfigChannel+0x62>
+ 15a:	44 0f       	add	r20, r20
+ 15c:	55 1f       	adc	r21, r21
+ 15e:	6a 95       	dec	r22
+ 160:	e2 f7       	brpl	.-8      	; 0x15a <dio_vidConfigChannel+0x5e>
+ 162:	ba 01       	movw	r22, r20
+ 164:	62 2b       	or	r22, r18
+ 166:	67 bb       	out	0x17, r22	; 23
+ 168:	08 95       	ret
+		}
+		else
+		{
+			CLEAR_BIT (DIO_DDRB_REG,channel);
+ 16a:	27 b3       	in	r18, 0x17	; 23
+ 16c:	81 e0       	ldi	r24, 0x01	; 1
+ 16e:	90 e0       	ldi	r25, 0x00	; 0
+ 170:	ac 01       	movw	r20, r24
+ 172:	02 c0       	rjmp	.+4      	; 0x178 <dio_vidConfigChannel+0x7c>
+ 174:	44 0f       	add	r20, r20
+ 176:	55 1f       	adc	r21, r21
+ 178:	6a 95       	dec	r22
+ 17a:	e2 f7       	brpl	.-8      	; 0x174 <dio_vidConfigChannel+0x78>
+ 17c:	ba 01       	movw	r22, r20
+ 17e:	60 95       	com	r22
+ 180:	62 23       	and	r22, r18
+ 182:	67 bb       	out	0x17, r22	; 23
+ 184:	08 95       	ret
+		}
+		break;
+
+	case DIO_PORTC:
+		if (direction == OUTPUT)
+ 186:	41 30       	cpi	r20, 0x01	; 1
+ 188:	69 f4       	brne	.+26     	; 0x1a4 <dio_vidConfigChannel+0xa8>
+		{
+			SET_BIT (DIO_DDRC_REG,channel);
+ 18a:	24 b3       	in	r18, 0x14	; 20
+ 18c:	81 e0       	ldi	r24, 0x01	; 1
+ 18e:	90 e0       	ldi	r25, 0x00	; 0
+ 190:	ac 01       	movw	r20, r24
+ 192:	02 c0       	rjmp	.+4      	; 0x198 <dio_vidConfigChannel+0x9c>
+ 194:	44 0f       	add	r20, r20
+ 196:	55 1f       	adc	r21, r21
+ 198:	6a 95       	dec	r22
+ 19a:	e2 f7       	brpl	.-8      	; 0x194 <dio_vidConfigChannel+0x98>
+ 19c:	ba 01       	movw	r22, r20
+ 19e:	62 2b       	or	r22, r18
+ 1a0:	64 bb       	out	0x14, r22	; 20
+ 1a2:	08 95       	ret
+		}
+		else
+		{
+			CLEAR_BIT (DIO_DDRC_REG,channel);
+ 1a4:	24 b3       	in	r18, 0x14	; 20
+ 1a6:	81 e0       	ldi	r24, 0x01	; 1
+ 1a8:	90 e0       	ldi	r25, 0x00	; 0
+ 1aa:	ac 01       	movw	r20, r24
+ 1ac:	02 c0       	rjmp	.+4      	; 0x1b2 <dio_vidConfigChannel+0xb6>
+ 1ae:	44 0f       	add	r20, r20
+ 1b0:	55 1f       	adc	r21, r21
+ 1b2:	6a 95       	dec	r22
+ 1b4:	e2 f7       	brpl	.-8      	; 0x1ae <dio_vidConfigChannel+0xb2>
+ 1b6:	ba 01       	movw	r22, r20
+ 1b8:	60 95       	com	r22
+ 1ba:	62 23       	and	r22, r18
+ 1bc:	64 bb       	out	0x14, r22	; 20
+ 1be:	08 95       	ret
+		}
+		break;
+
+	case DIO_PORTD:
+		if (direction == OUTPUT)
+ 1c0:	41 30       	cpi	r20, 0x01	; 1
+ 1c2:	69 f4       	brne	.+26     	; 0x1de <dio_vidConfigChannel+0xe2>
+		{
+			SET_BIT (DIO_DDRD_REG,channel);
+ 1c4:	21 b3       	in	r18, 0x11	; 17
+ 1c6:	81 e0       	ldi	r24, 0x01	; 1
+ 1c8:	90 e0       	ldi	r25, 0x00	; 0
+ 1ca:	ac 01       	movw	r20, r24
+ 1cc:	02 c0       	rjmp	.+4      	; 0x1d2 <dio_vidConfigChannel+0xd6>
+ 1ce:	44 0f       	add	r20, r20
+ 1d0:	55 1f       	adc	r21, r21
+ 1d2:	6a 95       	dec	r22
+ 1d4:	e2 f7       	brpl	.-8      	; 0x1ce <dio_vidConfigChannel+0xd2>
+ 1d6:	ba 01       	movw	r22, r20
+ 1d8:	62 2b       	or	r22, r18
+ 1da:	61 bb       	out	0x11, r22	; 17
+ 1dc:	08 95       	ret
+		}
+		else
+		{
+			CLEAR_BIT (DIO_DDRD_REG,channel);
+ 1de:	21 b3       	in	r18, 0x11	; 17
+ 1e0:	81 e0       	ldi	r24, 0x01	; 1
+ 1e2:	90 e0       	ldi	r25, 0x00	; 0
+ 1e4:	ac 01       	movw	r20, r24
+ 1e6:	02 c0       	rjmp	.+4      	; 0x1ec <dio_vidConfigChannel+0xf0>
+ 1e8:	44 0f       	add	r20, r20
+ 1ea:	55 1f       	adc	r21, r21
+ 1ec:	6a 95       	dec	r22
+ 1ee:	e2 f7       	brpl	.-8      	; 0x1e8 <dio_vidConfigChannel+0xec>
+ 1f0:	ba 01       	movw	r22, r20
+ 1f2:	60 95       	com	r22
+ 1f4:	62 23       	and	r22, r18
+ 1f6:	61 bb       	out	0x11, r22	; 17
+ 1f8:	08 95       	ret
+
+000001fa <dio_vidWriteChannel>:
+					 level    -> MC channel level
+* \Return value:   : None                            
+*******************************************************************************/
+void dio_vidWriteChannel(dio_portId_t port, dio_channelId_t channel, dio_level_t level)
+{
+	switch (port)
+ 1fa:	81 30       	cpi	r24, 0x01	; 1
+ 1fc:	31 f1       	breq	.+76     	; 0x24a <dio_vidWriteChannel+0x50>
+ 1fe:	81 30       	cpi	r24, 0x01	; 1
+ 200:	38 f0       	brcs	.+14     	; 0x210 <dio_vidWriteChannel+0x16>
+ 202:	82 30       	cpi	r24, 0x02	; 2
+ 204:	09 f4       	brne	.+2      	; 0x208 <dio_vidWriteChannel+0xe>
+ 206:	3e c0       	rjmp	.+124    	; 0x284 <dio_vidWriteChannel+0x8a>
+ 208:	83 30       	cpi	r24, 0x03	; 3
+ 20a:	09 f0       	breq	.+2      	; 0x20e <dio_vidWriteChannel+0x14>
+ 20c:	74 c0       	rjmp	.+232    	; 0x2f6 <dio_vidWriteChannel+0xfc>
+ 20e:	57 c0       	rjmp	.+174    	; 0x2be <dio_vidWriteChannel+0xc4>
+	{
+	case DIO_PORTA:
+		if (level == STD_LOW)
+ 210:	44 23       	and	r20, r20
+ 212:	71 f4       	brne	.+28     	; 0x230 <dio_vidWriteChannel+0x36>
+		{
+			CLEAR_BIT(DIO_PORTA_REG,channel);
+ 214:	2b b3       	in	r18, 0x1b	; 27
+ 216:	81 e0       	ldi	r24, 0x01	; 1
+ 218:	90 e0       	ldi	r25, 0x00	; 0
+ 21a:	ac 01       	movw	r20, r24
+ 21c:	02 c0       	rjmp	.+4      	; 0x222 <dio_vidWriteChannel+0x28>
+ 21e:	44 0f       	add	r20, r20
+ 220:	55 1f       	adc	r21, r21
+ 222:	6a 95       	dec	r22
+ 224:	e2 f7       	brpl	.-8      	; 0x21e <dio_vidWriteChannel+0x24>
+ 226:	ba 01       	movw	r22, r20
+ 228:	60 95       	com	r22
+ 22a:	62 23       	and	r22, r18
+ 22c:	6b bb       	out	0x1b, r22	; 27
+ 22e:	08 95       	ret
+		}
+		else
+		{
+			SET_BIT(DIO_PORTA_REG,channel);
+ 230:	2b b3       	in	r18, 0x1b	; 27
+ 232:	81 e0       	ldi	r24, 0x01	; 1
+ 234:	90 e0       	ldi	r25, 0x00	; 0
+ 236:	ac 01       	movw	r20, r24
+ 238:	02 c0       	rjmp	.+4      	; 0x23e <dio_vidWriteChannel+0x44>
+ 23a:	44 0f       	add	r20, r20
+ 23c:	55 1f       	adc	r21, r21
+ 23e:	6a 95       	dec	r22
+ 240:	e2 f7       	brpl	.-8      	; 0x23a <dio_vidWriteChannel+0x40>
+ 242:	ba 01       	movw	r22, r20
+ 244:	62 2b       	or	r22, r18
+ 246:	6b bb       	out	0x1b, r22	; 27
+ 248:	08 95       	ret
+		}
+		break;
+
+	case DIO_PORTB:
+		if (level == STD_LOW)
+ 24a:	44 23       	and	r20, r20
+ 24c:	71 f4       	brne	.+28     	; 0x26a <dio_vidWriteChannel+0x70>
+		{
+			CLEAR_BIT(DIO_PORTB_REG,channel);
+ 24e:	28 b3       	in	r18, 0x18	; 24
+ 250:	81 e0       	ldi	r24, 0x01	; 1
+ 252:	90 e0       	ldi	r25, 0x00	; 0
+ 254:	ac 01       	movw	r20, r24
+ 256:	02 c0       	rjmp	.+4      	; 0x25c <dio_vidWriteChannel+0x62>
+ 258:	44 0f       	add	r20, r20
+ 25a:	55 1f       	adc	r21, r21
+ 25c:	6a 95       	dec	r22
+ 25e:	e2 f7       	brpl	.-8      	; 0x258 <dio_vidWriteChannel+0x5e>
+ 260:	ba 01       	movw	r22, r20
+ 262:	60 95       	com	r22
+ 264:	62 23       	and	r22, r18
+ 266:	68 bb       	out	0x18, r22	; 24
+ 268:	08 95       	ret
+		}
+		else
+		{
+			SET_BIT(DIO_PORTB_REG,channel);
+ 26a:	28 b3       	in	r18, 0x18	; 24
+ 26c:	81 e0       	ldi	r24, 0x01	; 1
+ 26e:	90 e0       	ldi	r25, 0x00	; 0
+ 270:	ac 01       	movw	r20, r24
+ 272:	02 c0       	rjmp	.+4      	; 0x278 <dio_vidWriteChannel+0x7e>
+ 274:	44 0f       	add	r20, r20
+ 276:	55 1f       	adc	r21, r21
+ 278:	6a 95       	dec	r22
+ 27a:	e2 f7       	brpl	.-8      	; 0x274 <dio_vidWriteChannel+0x7a>
+ 27c:	ba 01       	movw	r22, r20
+ 27e:	62 2b       	or	r22, r18
+ 280:	68 bb       	out	0x18, r22	; 24
+ 282:	08 95       	ret
+		}
+		break;
+
+	case DIO_PORTC:
+		if (level == STD_LOW)
+ 284:	44 23       	and	r20, r20
+ 286:	71 f4       	brne	.+28     	; 0x2a4 <dio_vidWriteChannel+0xaa>
+		{
+			CLEAR_BIT(DIO_PORTC_REG,channel);
+ 288:	25 b3       	in	r18, 0x15	; 21
+ 28a:	81 e0       	ldi	r24, 0x01	; 1
+ 28c:	90 e0       	ldi	r25, 0x00	; 0
+ 28e:	ac 01       	movw	r20, r24
+ 290:	02 c0       	rjmp	.+4      	; 0x296 <dio_vidWriteChannel+0x9c>
+ 292:	44 0f       	add	r20, r20
+ 294:	55 1f       	adc	r21, r21
+ 296:	6a 95       	dec	r22
+ 298:	e2 f7       	brpl	.-8      	; 0x292 <dio_vidWriteChannel+0x98>
+ 29a:	ba 01       	movw	r22, r20
+ 29c:	60 95       	com	r22
+ 29e:	62 23       	and	r22, r18
+ 2a0:	65 bb       	out	0x15, r22	; 21
+ 2a2:	08 95       	ret
+		}
+		else
+		{
+			SET_BIT(DIO_PORTC_REG,channel);
+ 2a4:	25 b3       	in	r18, 0x15	; 21
+ 2a6:	81 e0       	ldi	r24, 0x01	; 1
+ 2a8:	90 e0       	ldi	r25, 0x00	; 0
+ 2aa:	ac 01       	movw	r20, r24
+ 2ac:	02 c0       	rjmp	.+4      	; 0x2b2 <dio_vidWriteChannel+0xb8>
+ 2ae:	44 0f       	add	r20, r20
+ 2b0:	55 1f       	adc	r21, r21
+ 2b2:	6a 95       	dec	r22
+ 2b4:	e2 f7       	brpl	.-8      	; 0x2ae <dio_vidWriteChannel+0xb4>
+ 2b6:	ba 01       	movw	r22, r20
+ 2b8:	62 2b       	or	r22, r18
+ 2ba:	65 bb       	out	0x15, r22	; 21
+ 2bc:	08 95       	ret
+		}
+		break;
+
+	case DIO_PORTD:
+		if (level == STD_LOW)
+ 2be:	44 23       	and	r20, r20
+ 2c0:	71 f4       	brne	.+28     	; 0x2de <dio_vidWriteChannel+0xe4>
+		{
+			CLEAR_BIT(DIO_PORTD_REG,channel);
+ 2c2:	22 b3       	in	r18, 0x12	; 18
+ 2c4:	81 e0       	ldi	r24, 0x01	; 1
+ 2c6:	90 e0       	ldi	r25, 0x00	; 0
+ 2c8:	ac 01       	movw	r20, r24
+ 2ca:	02 c0       	rjmp	.+4      	; 0x2d0 <dio_vidWriteChannel+0xd6>
+ 2cc:	44 0f       	add	r20, r20
+ 2ce:	55 1f       	adc	r21, r21
+ 2d0:	6a 95       	dec	r22
+ 2d2:	e2 f7       	brpl	.-8      	; 0x2cc <dio_vidWriteChannel+0xd2>
+ 2d4:	ba 01       	movw	r22, r20
+ 2d6:	60 95       	com	r22
+ 2d8:	62 23       	and	r22, r18
+ 2da:	62 bb       	out	0x12, r22	; 18
+ 2dc:	08 95       	ret
+		}
+		else
+		{
+			SET_BIT(DIO_PORTD_REG,channel);
+ 2de:	22 b3       	in	r18, 0x12	; 18
+ 2e0:	81 e0       	ldi	r24, 0x01	; 1
+ 2e2:	90 e0       	ldi	r25, 0x00	; 0
+ 2e4:	ac 01       	movw	r20, r24
+ 2e6:	02 c0       	rjmp	.+4      	; 0x2ec <dio_vidWriteChannel+0xf2>
+ 2e8:	44 0f       	add	r20, r20
+ 2ea:	55 1f       	adc	r21, r21
+ 2ec:	6a 95       	dec	r22
+ 2ee:	e2 f7       	brpl	.-8      	; 0x2e8 <dio_vidWriteChannel+0xee>
+ 2f0:	ba 01       	movw	r22, r20
+ 2f2:	62 2b       	or	r22, r18
+ 2f4:	62 bb       	out	0x12, r22	; 18
+ 2f6:	08 95       	ret
+
+000002f8 <dio_vidWriteChannelGroup>:
+*******************************************************************************/
+void dio_vidWriteChannelGroup(dio_portId_t port,u8 value,u8 mask)
+{
+	/*	show me your code */
+	
+}
+ 2f8:	08 95       	ret
+
+000002fa <dio_vidFlipChannel>:
+					 channel  -> MC channel ID
+* \Return value:   : None                            
+*******************************************************************************/
+void dio_vidFlipChannel(dio_portId_t port, dio_channelId_t channel)
+{
+	switch (port)
+ 2fa:	81 30       	cpi	r24, 0x01	; 1
+ 2fc:	a1 f0       	breq	.+40     	; 0x326 <dio_vidFlipChannel+0x2c>
+ 2fe:	81 30       	cpi	r24, 0x01	; 1
+ 300:	28 f0       	brcs	.+10     	; 0x30c <dio_vidFlipChannel+0x12>
+ 302:	82 30       	cpi	r24, 0x02	; 2
+ 304:	e9 f0       	breq	.+58     	; 0x340 <dio_vidFlipChannel+0x46>
+ 306:	83 30       	cpi	r24, 0x03	; 3
+ 308:	a1 f5       	brne	.+104    	; 0x372 <dio_vidFlipChannel+0x78>
+ 30a:	27 c0       	rjmp	.+78     	; 0x35a <dio_vidFlipChannel+0x60>
+	{
+	case DIO_PORTA:
+		FLIP_BIT(DIO_PORTA_REG,channel);
+ 30c:	2b b3       	in	r18, 0x1b	; 27
+ 30e:	81 e0       	ldi	r24, 0x01	; 1
+ 310:	90 e0       	ldi	r25, 0x00	; 0
+ 312:	ac 01       	movw	r20, r24
+ 314:	02 c0       	rjmp	.+4      	; 0x31a <dio_vidFlipChannel+0x20>
+ 316:	44 0f       	add	r20, r20
+ 318:	55 1f       	adc	r21, r21
+ 31a:	6a 95       	dec	r22
+ 31c:	e2 f7       	brpl	.-8      	; 0x316 <dio_vidFlipChannel+0x1c>
+ 31e:	ba 01       	movw	r22, r20
+ 320:	62 27       	eor	r22, r18
+ 322:	6b bb       	out	0x1b, r22	; 27
+		break;
+ 324:	08 95       	ret
+
+	case DIO_PORTB:
+		FLIP_BIT(DIO_PORTB_REG,channel);
+ 326:	28 b3       	in	r18, 0x18	; 24
+ 328:	81 e0       	ldi	r24, 0x01	; 1
+ 32a:	90 e0       	ldi	r25, 0x00	; 0
+ 32c:	ac 01       	movw	r20, r24
+ 32e:	02 c0       	rjmp	.+4      	; 0x334 <dio_vidFlipChannel+0x3a>
+ 330:	44 0f       	add	r20, r20
+ 332:	55 1f       	adc	r21, r21
+ 334:	6a 95       	dec	r22
+ 336:	e2 f7       	brpl	.-8      	; 0x330 <dio_vidFlipChannel+0x36>
+ 338:	ba 01       	movw	r22, r20
+ 33a:	62 27       	eor	r22, r18
+ 33c:	68 bb       	out	0x18, r22	; 24
+		break;
+ 33e:	08 95       	ret
+
+	case DIO_PORTC:
+		FLIP_BIT(DIO_PORTC_REG,channel);
+ 340:	25 b3       	in	r18, 0x15	; 21
+ 342:	81 e0       	ldi	r24, 0x01	; 1
+ 344:	90 e0       	ldi	r25, 0x00	; 0
+ 346:	ac 01       	movw	r20, r24
+ 348:	02 c0       	rjmp	.+4      	; 0x34e <dio_vidFlipChannel+0x54>
+ 34a:	44 0f       	add	r20, r20
+ 34c:	55 1f       	adc	r21, r21
+ 34e:	6a 95       	dec	r22
+ 350:	e2 f7       	brpl	.-8      	; 0x34a <dio_vidFlipChannel+0x50>
+ 352:	ba 01       	movw	r22, r20
+ 354:	62 27       	eor	r22, r18
+ 356:	65 bb       	out	0x15, r22	; 21
+		break;
+ 358:	08 95       	ret
+
+	case DIO_PORTD:
+		FLIP_BIT(DIO_PORTD_REG,channel);
+ 35a:	22 b3       	in	r18, 0x12	; 18
+ 35c:	81 e0       	ldi	r24, 0x01	; 1
+ 35e:	90 e0       	ldi	r25, 0x00	; 0
+ 360:	ac 01       	movw	r20, r24
+ 362:	02 c0       	rjmp	.+4      	; 0x368 <dio_vidFlipChannel+0x6e>
+ 364:	44 0f       	add	r20, r20
+ 366:	55 1f       	adc	r21, r21
+ 368:	6a 95       	dec	r22
+ 36a:	e2 f7       	brpl	.-8      	; 0x364 <dio_vidFlipChannel+0x6a>
+ 36c:	ba 01       	movw	r22, r20
+ 36e:	62 27       	eor	r22, r18
+ 370:	62 bb       	out	0x12, r22	; 18
+ 372:	08 95       	ret
+
+00000374 <dio_dioLevelReadChannel>:
+* \Return value:   : loc_pinRead   -> IO channel level                           
+*******************************************************************************/
+dio_level_t dio_dioLevelReadChannel(dio_portId_t port, dio_channelId_t channel)
+{
+	dio_level_t loc_pinRead = STD_LOW;
+	switch (port)
+ 374:	81 30       	cpi	r24, 0x01	; 1
+ 376:	89 f0       	breq	.+34     	; 0x39a <dio_dioLevelReadChannel+0x26>
+ 378:	81 30       	cpi	r24, 0x01	; 1
+ 37a:	28 f0       	brcs	.+10     	; 0x386 <dio_dioLevelReadChannel+0x12>
+ 37c:	82 30       	cpi	r24, 0x02	; 2
+ 37e:	b9 f0       	breq	.+46     	; 0x3ae <dio_dioLevelReadChannel+0x3a>
+ 380:	83 30       	cpi	r24, 0x03	; 3
+ 382:	49 f5       	brne	.+82     	; 0x3d6 <dio_dioLevelReadChannel+0x62>
+ 384:	1e c0       	rjmp	.+60     	; 0x3c2 <dio_dioLevelReadChannel+0x4e>
+	{
+	 case DIO_PORTA:
+		loc_pinRead = CHECK_BIT(DIO_PINA_REG, channel);
+ 386:	29 b3       	in	r18, 0x19	; 25
+ 388:	30 e0       	ldi	r19, 0x00	; 0
+ 38a:	c9 01       	movw	r24, r18
+ 38c:	02 c0       	rjmp	.+4      	; 0x392 <dio_dioLevelReadChannel+0x1e>
+ 38e:	95 95       	asr	r25
+ 390:	87 95       	ror	r24
+ 392:	6a 95       	dec	r22
+ 394:	e2 f7       	brpl	.-8      	; 0x38e <dio_dioLevelReadChannel+0x1a>
+ 396:	81 70       	andi	r24, 0x01	; 1
+		break;
+ 398:	08 95       	ret
+
+	 case DIO_PORTB:
+		loc_pinRead = CHECK_BIT(DIO_PINB_REG, channel);
+ 39a:	26 b3       	in	r18, 0x16	; 22
+ 39c:	30 e0       	ldi	r19, 0x00	; 0
+ 39e:	c9 01       	movw	r24, r18
+ 3a0:	02 c0       	rjmp	.+4      	; 0x3a6 <dio_dioLevelReadChannel+0x32>
+ 3a2:	95 95       	asr	r25
+ 3a4:	87 95       	ror	r24
+ 3a6:	6a 95       	dec	r22
+ 3a8:	e2 f7       	brpl	.-8      	; 0x3a2 <dio_dioLevelReadChannel+0x2e>
+ 3aa:	81 70       	andi	r24, 0x01	; 1
+		break;
+ 3ac:	08 95       	ret
+
+	 case DIO_PORTC:
+		loc_pinRead = CHECK_BIT(DIO_PINC_REG, channel);
+ 3ae:	23 b3       	in	r18, 0x13	; 19
+ 3b0:	30 e0       	ldi	r19, 0x00	; 0
+ 3b2:	c9 01       	movw	r24, r18
+ 3b4:	02 c0       	rjmp	.+4      	; 0x3ba <dio_dioLevelReadChannel+0x46>
+ 3b6:	95 95       	asr	r25
+ 3b8:	87 95       	ror	r24
+ 3ba:	6a 95       	dec	r22
+ 3bc:	e2 f7       	brpl	.-8      	; 0x3b6 <dio_dioLevelReadChannel+0x42>
+ 3be:	81 70       	andi	r24, 0x01	; 1
+		break;
+ 3c0:	08 95       	ret
+
+	 case DIO_PORTD:
+		loc_pinRead = CHECK_BIT(DIO_PIND_REG, channel);
+ 3c2:	20 b3       	in	r18, 0x10	; 16
+ 3c4:	30 e0       	ldi	r19, 0x00	; 0
+ 3c6:	c9 01       	movw	r24, r18
+ 3c8:	02 c0       	rjmp	.+4      	; 0x3ce <dio_dioLevelReadChannel+0x5a>
+ 3ca:	95 95       	asr	r25
+ 3cc:	87 95       	ror	r24
+ 3ce:	6a 95       	dec	r22
+ 3d0:	e2 f7       	brpl	.-8      	; 0x3ca <dio_dioLevelReadChannel+0x56>
+ 3d2:	81 70       	andi	r24, 0x01	; 1
+		break;
+ 3d4:	08 95       	ret
+					 channel  -> MC channel ID
+* \Return value:   : loc_pinRead   -> IO channel level                           
+*******************************************************************************/
+dio_level_t dio_dioLevelReadChannel(dio_portId_t port, dio_channelId_t channel)
+{
+	dio_level_t loc_pinRead = STD_LOW;
+ 3d6:	80 e0       	ldi	r24, 0x00	; 0
+	 case DIO_PORTD:
+		loc_pinRead = CHECK_BIT(DIO_PIND_REG, channel);
+		break;
+    }
+	return loc_pinRead;
+}
+ 3d8:	08 95       	ret
+
+000003da <dio_vidEnablePullUp>:
+*******************************************************************************/
+void dio_vidEnablePullUp(dio_portId_t port, dio_channelId_t channel)
+{
+	/*	show me your code */	
+	
+}
+ 3da:	08 95       	ret
+
+000003dc <led_init>:
+* \Parameters (in) : None                                                                            
+* \Return value:   : None                                                                      
+*******************************************************************************/
+void led_init(void)
+{
+	dio_vidConfigChannel(LED_RED_PORT,LED_RED_CHANNEL,OUTPUT);
+ 3dc:	81 e0       	ldi	r24, 0x01	; 1
+ 3de:	67 e0       	ldi	r22, 0x07	; 7
+ 3e0:	41 e0       	ldi	r20, 0x01	; 1
+ 3e2:	0e 94 7e 00 	call	0xfc	; 0xfc <dio_vidConfigChannel>
+	dio_vidConfigChannel(LED_GREEN_PORT,LED_GREEN_CHANNEL,OUTPUT);
+ 3e6:	80 e0       	ldi	r24, 0x00	; 0
+ 3e8:	64 e0       	ldi	r22, 0x04	; 4
+ 3ea:	41 e0       	ldi	r20, 0x01	; 1
+ 3ec:	0e 94 7e 00 	call	0xfc	; 0xfc <dio_vidConfigChannel>
+	dio_vidConfigChannel(LED_BLUE_PORT,LED_BLUE_CHANNEL,OUTPUT);
+ 3f0:	80 e0       	ldi	r24, 0x00	; 0
+ 3f2:	65 e0       	ldi	r22, 0x05	; 5
+ 3f4:	41 e0       	ldi	r20, 0x01	; 1
+ 3f6:	0e 94 7e 00 	call	0xfc	; 0xfc <dio_vidConfigChannel>
+	dio_vidConfigChannel(LED_YELLOW_PORT,LED_YELLOW_CHANNEL,OUTPUT);
+ 3fa:	80 e0       	ldi	r24, 0x00	; 0
+ 3fc:	66 e0       	ldi	r22, 0x06	; 6
+ 3fe:	41 e0       	ldi	r20, 0x01	; 1
+ 400:	0e 94 7e 00 	call	0xfc	; 0xfc <dio_vidConfigChannel>
+}
+ 404:	08 95       	ret
+
+00000406 <led_on>:
+* \Parameters (in) : ledId	-> LED id                                                                            
+* \Return value:   : None                                                                      
+*******************************************************************************/
+void led_on(led_id_t ledId)
+{
+	switch(ledId)
+ 406:	81 30       	cpi	r24, 0x01	; 1
+ 408:	69 f0       	breq	.+26     	; 0x424 <led_on+0x1e>
+ 40a:	81 30       	cpi	r24, 0x01	; 1
+ 40c:	28 f0       	brcs	.+10     	; 0x418 <led_on+0x12>
+ 40e:	82 30       	cpi	r24, 0x02	; 2
+ 410:	79 f0       	breq	.+30     	; 0x430 <led_on+0x2a>
+ 412:	83 30       	cpi	r24, 0x03	; 3
+ 414:	c1 f4       	brne	.+48     	; 0x446 <led_on+0x40>
+ 416:	12 c0       	rjmp	.+36     	; 0x43c <led_on+0x36>
+	{
+		case LED_RED:
+		
+		#if (LED_RED_CONNECTION == SOURCE)
+			dio_vidWriteChannel(LED_RED_PORT,LED_RED_CHANNEL,STD_HIGH);
+ 418:	81 e0       	ldi	r24, 0x01	; 1
+ 41a:	67 e0       	ldi	r22, 0x07	; 7
+ 41c:	41 e0       	ldi	r20, 0x01	; 1
+ 41e:	0e 94 fd 00 	call	0x1fa	; 0x1fa <dio_vidWriteChannel>
+		#elif (LED_RED_CONNECTION == SINK)
+			dio_vidWriteChannel(LED_RED_PORT,LED_RED_CHANNEL,STD_LOW);
+		#endif		
+		break;
+ 422:	08 95       	ret
+		
+		case LED_GREEN:
+		#if (LED_GREEN_CONNECTION == SOURCE)
+			dio_vidWriteChannel(LED_GREEN_PORT,LED_GREEN_CHANNEL,STD_HIGH);
+ 424:	80 e0       	ldi	r24, 0x00	; 0
+ 426:	64 e0       	ldi	r22, 0x04	; 4
+ 428:	41 e0       	ldi	r20, 0x01	; 1
+ 42a:	0e 94 fd 00 	call	0x1fa	; 0x1fa <dio_vidWriteChannel>
+		#elif (LED_RED_CONNECTION == SINK)
+			dio_vidWriteChannel(LED_GREEN_PORT,LED_GREEN_CHANNEL,STD_LOW);
+		#endif
+		break;
+ 42e:	08 95       	ret
+		
+		case LED_BLUE:
+		#if (LED_BLUE_CONNECTION == SOURCE)
+			dio_vidWriteChannel(LED_BLUE_PORT,LED_BLUE_CHANNEL,STD_HIGH);
+ 430:	80 e0       	ldi	r24, 0x00	; 0
+ 432:	65 e0       	ldi	r22, 0x05	; 5
+ 434:	41 e0       	ldi	r20, 0x01	; 1
+ 436:	0e 94 fd 00 	call	0x1fa	; 0x1fa <dio_vidWriteChannel>
+		#elif (LED_RED_CONNECTION == SINK)
+			dio_vidWriteChannel(LED_BLUE_PORT,LED_BLUE_CHANNEL,STD_LOW);
+		#endif
+		break;
+ 43a:	08 95       	ret
+		
+		case LED_YELLOW:
+		#if (LED_YELLOW_CONNECTION == SOURCE)
+			dio_vidWriteChannel(LED_YELLOW_PORT,LED_YELLOW_CHANNEL,STD_HIGH);
+ 43c:	80 e0       	ldi	r24, 0x00	; 0
+ 43e:	66 e0       	ldi	r22, 0x06	; 6
+ 440:	41 e0       	ldi	r20, 0x01	; 1
+ 442:	0e 94 fd 00 	call	0x1fa	; 0x1fa <dio_vidWriteChannel>
+ 446:	08 95       	ret
+
+00000448 <led_off>:
+* \Parameters (in) : ledId	-> LED id                                                                            
+* \Return value:   : None                                                                      
+*******************************************************************************/
+void led_off(led_id_t ledId)
+{
+	switch(ledId)
+ 448:	81 30       	cpi	r24, 0x01	; 1
+ 44a:	69 f0       	breq	.+26     	; 0x466 <led_off+0x1e>
+ 44c:	81 30       	cpi	r24, 0x01	; 1
+ 44e:	28 f0       	brcs	.+10     	; 0x45a <led_off+0x12>
+ 450:	82 30       	cpi	r24, 0x02	; 2
+ 452:	79 f0       	breq	.+30     	; 0x472 <led_off+0x2a>
+ 454:	83 30       	cpi	r24, 0x03	; 3
+ 456:	c1 f4       	brne	.+48     	; 0x488 <led_off+0x40>
+ 458:	12 c0       	rjmp	.+36     	; 0x47e <led_off+0x36>
+	{
+		case LED_RED:
+		
+		#if (LED_RED_CONNECTION == SOURCE)
+			dio_vidWriteChannel(LED_RED_PORT,LED_RED_CHANNEL,STD_LOW);
+ 45a:	81 e0       	ldi	r24, 0x01	; 1
+ 45c:	67 e0       	ldi	r22, 0x07	; 7
+ 45e:	40 e0       	ldi	r20, 0x00	; 0
+ 460:	0e 94 fd 00 	call	0x1fa	; 0x1fa <dio_vidWriteChannel>
+		#elif (LED_RED_CONNECTION == SINK)
+			dio_vidWriteChannel(LED_RED_PORT,LED_RED_CHANNEL,STD_HIGH);
+		#endif		
+		break;
+ 464:	08 95       	ret
+		
+		case LED_GREEN:
+		#if (LED_GREEN_CONNECTION == SOURCE)
+			dio_vidWriteChannel(LED_GREEN_PORT,LED_GREEN_CHANNEL,STD_LOW);
+ 466:	80 e0       	ldi	r24, 0x00	; 0
+ 468:	64 e0       	ldi	r22, 0x04	; 4
+ 46a:	40 e0       	ldi	r20, 0x00	; 0
+ 46c:	0e 94 fd 00 	call	0x1fa	; 0x1fa <dio_vidWriteChannel>
+		#elif (LED_RED_CONNECTION == SINK)
+			dio_vidWriteChannel(LED_GREEN_PORT,LED_GREEN_CHANNEL,STD_HIGH);
+		#endif
+		break;
+ 470:	08 95       	ret
+		
+		case LED_BLUE:
+		#if (LED_BLUE_CONNECTION == SOURCE)
+			dio_vidWriteChannel(LED_BLUE_PORT,LED_BLUE_CHANNEL,STD_LOW);
+ 472:	80 e0       	ldi	r24, 0x00	; 0
+ 474:	65 e0       	ldi	r22, 0x05	; 5
+ 476:	40 e0       	ldi	r20, 0x00	; 0
+ 478:	0e 94 fd 00 	call	0x1fa	; 0x1fa <dio_vidWriteChannel>
+		#elif (LED_RED_CONNECTION == SINK)
+			dio_vidWriteChannel(LED_BLUE_PORT,LED_BLUE_CHANNEL,STD_HIGH);
+		#endif
+		break;
+ 47c:	08 95       	ret
+		
+		case LED_YELLOW:
+		#if (LED_YELLOW_CONNECTION == SOURCE)
+			dio_vidWriteChannel(LED_YELLOW_PORT,LED_YELLOW_CHANNEL,STD_LOW);
+ 47e:	80 e0       	ldi	r24, 0x00	; 0
+ 480:	66 e0       	ldi	r22, 0x06	; 6
+ 482:	40 e0       	ldi	r20, 0x00	; 0
+ 484:	0e 94 fd 00 	call	0x1fa	; 0x1fa <dio_vidWriteChannel>
+ 488:	08 95       	ret
+
+0000048a <led_toggle>:
+* \Parameters (in) : ledId	-> LED id                                                                            
+* \Return value:   : None                                                                      
+*******************************************************************************/
+void led_toggle(led_id_t ledId)
+{
+	switch(ledId)
+ 48a:	81 30       	cpi	r24, 0x01	; 1
+ 48c:	61 f0       	breq	.+24     	; 0x4a6 <led_toggle+0x1c>
+ 48e:	81 30       	cpi	r24, 0x01	; 1
+ 490:	28 f0       	brcs	.+10     	; 0x49c <led_toggle+0x12>
+ 492:	82 30       	cpi	r24, 0x02	; 2
+ 494:	69 f0       	breq	.+26     	; 0x4b0 <led_toggle+0x26>
+ 496:	83 30       	cpi	r24, 0x03	; 3
+ 498:	a1 f4       	brne	.+40     	; 0x4c2 <led_toggle+0x38>
+ 49a:	0f c0       	rjmp	.+30     	; 0x4ba <led_toggle+0x30>
+	{
+		case LED_RED:
+		
+			dio_vidFlipChannel(LED_RED_PORT,LED_RED_CHANNEL);	
+ 49c:	81 e0       	ldi	r24, 0x01	; 1
+ 49e:	67 e0       	ldi	r22, 0x07	; 7
+ 4a0:	0e 94 7d 01 	call	0x2fa	; 0x2fa <dio_vidFlipChannel>
+		break;
+ 4a4:	08 95       	ret
+		
+		case LED_GREEN:
+			dio_vidFlipChannel(LED_GREEN_PORT,LED_GREEN_CHANNEL);
+ 4a6:	80 e0       	ldi	r24, 0x00	; 0
+ 4a8:	64 e0       	ldi	r22, 0x04	; 4
+ 4aa:	0e 94 7d 01 	call	0x2fa	; 0x2fa <dio_vidFlipChannel>
+		break;
+ 4ae:	08 95       	ret
+		
+		case LED_BLUE:
+			dio_vidFlipChannel(LED_BLUE_PORT,LED_BLUE_CHANNEL);
+ 4b0:	80 e0       	ldi	r24, 0x00	; 0
+ 4b2:	65 e0       	ldi	r22, 0x05	; 5
+ 4b4:	0e 94 7d 01 	call	0x2fa	; 0x2fa <dio_vidFlipChannel>
+
+		break;
+ 4b8:	08 95       	ret
+		
+		case LED_YELLOW:
+			dio_vidFlipChannel(LED_YELLOW_PORT,LED_YELLOW_CHANNEL);
+ 4ba:	80 e0       	ldi	r24, 0x00	; 0
+ 4bc:	66 e0       	ldi	r22, 0x06	; 6
+ 4be:	0e 94 7d 01 	call	0x2fa	; 0x2fa <dio_vidFlipChannel>
+ 4c2:	08 95       	ret
+
+000004c4 <check_password>:
+#include "led.h"
+
+#include "button.h"
+
+void check_password(u8 a[])
+{   static  	u8 counter = 0 ;
+ 4c4:	cf 93       	push	r28
+ 4c6:	df 93       	push	r29
+ 4c8:	ec 01       	movw	r28, r24
+	static u8 right= 1 ;
+	
+	
+	if(Button_GetStatus(BUTTON0))
+ 4ca:	80 e0       	ldi	r24, 0x00	; 0
+ 4cc:	0e 94 59 00 	call	0xb2	; 0xb2 <Button_GetStatus>
+ 4d0:	88 23       	and	r24, r24
+ 4d2:	d1 f0       	breq	.+52     	; 0x508 <check_password+0x44>
+	{  
+		counter++ ;
+ 4d4:	80 91 68 00 	lds	r24, 0x0068
+ 4d8:	8f 5f       	subi	r24, 0xFF	; 255
+ 4da:	80 93 68 00 	sts	0x0068, r24
+		if((a[counter-1] !=1))
+ 4de:	c8 0f       	add	r28, r24
+ 4e0:	d1 1d       	adc	r29, r1
+ 4e2:	21 97       	sbiw	r28, 0x01	; 1
+ 4e4:	88 81       	ld	r24, Y
+ 4e6:	81 30       	cpi	r24, 0x01	; 1
+ 4e8:	29 f0       	breq	.+10     	; 0x4f4 <check_password+0x30>
+		{
+			 led_toggle(LED_BLUE);
+ 4ea:	82 e0       	ldi	r24, 0x02	; 2
+ 4ec:	0e 94 45 02 	call	0x48a	; 0x48a <led_toggle>
+			 right = 0 ;
+ 4f0:	10 92 66 00 	sts	0x0066, r1
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 4f4:	8f ef       	ldi	r24, 0xFF	; 255
+ 4f6:	92 e5       	ldi	r25, 0x52	; 82
+ 4f8:	a7 e0       	ldi	r26, 0x07	; 7
+ 4fa:	81 50       	subi	r24, 0x01	; 1
+ 4fc:	90 40       	sbci	r25, 0x00	; 0
+ 4fe:	a0 40       	sbci	r26, 0x00	; 0
+ 500:	e1 f7       	brne	.-8      	; 0x4fa <check_password+0x36>
+ 502:	00 c0       	rjmp	.+0      	; 0x504 <check_password+0x40>
+ 504:	00 00       	nop
+ 506:	3d c0       	rjmp	.+122    	; 0x582 <check_password+0xbe>
+		}
+		//while(Button_GetStatus(BUTTON0)) ;
+		_delay_ms(300);
+		
+	}
+	else if(Button_GetStatus(BUTTON1))
+ 508:	81 e0       	ldi	r24, 0x01	; 1
+ 50a:	0e 94 59 00 	call	0xb2	; 0xb2 <Button_GetStatus>
+ 50e:	88 23       	and	r24, r24
+ 510:	d1 f0       	breq	.+52     	; 0x546 <check_password+0x82>
+	{
+		counter++ ;
+ 512:	80 91 68 00 	lds	r24, 0x0068
+ 516:	8f 5f       	subi	r24, 0xFF	; 255
+ 518:	80 93 68 00 	sts	0x0068, r24
+		if((a[counter-1] !=2))
+ 51c:	c8 0f       	add	r28, r24
+ 51e:	d1 1d       	adc	r29, r1
+ 520:	21 97       	sbiw	r28, 0x01	; 1
+ 522:	88 81       	ld	r24, Y
+ 524:	82 30       	cpi	r24, 0x02	; 2
+ 526:	29 f0       	breq	.+10     	; 0x532 <check_password+0x6e>
+		{
+			led_toggle(LED_BLUE);
+ 528:	82 e0       	ldi	r24, 0x02	; 2
+ 52a:	0e 94 45 02 	call	0x48a	; 0x48a <led_toggle>
+			right = 0 ;
+ 52e:	10 92 66 00 	sts	0x0066, r1
+ 532:	8f ef       	ldi	r24, 0xFF	; 255
+ 534:	92 e5       	ldi	r25, 0x52	; 82
+ 536:	a7 e0       	ldi	r26, 0x07	; 7
+ 538:	81 50       	subi	r24, 0x01	; 1
+ 53a:	90 40       	sbci	r25, 0x00	; 0
+ 53c:	a0 40       	sbci	r26, 0x00	; 0
+ 53e:	e1 f7       	brne	.-8      	; 0x538 <check_password+0x74>
+ 540:	00 c0       	rjmp	.+0      	; 0x542 <check_password+0x7e>
+ 542:	00 00       	nop
+ 544:	1e c0       	rjmp	.+60     	; 0x582 <check_password+0xbe>
+			
+		}
+		_delay_ms(300);
+		//while(Button_GetStatus(BUTTON1)) ;
+	}
+	else if(Button_GetStatus(BUTTON2))
+ 546:	82 e0       	ldi	r24, 0x02	; 2
+ 548:	0e 94 59 00 	call	0xb2	; 0xb2 <Button_GetStatus>
+ 54c:	88 23       	and	r24, r24
+ 54e:	c9 f0       	breq	.+50     	; 0x582 <check_password+0xbe>
+	{
+		counter++ ;
+ 550:	80 91 68 00 	lds	r24, 0x0068
+ 554:	8f 5f       	subi	r24, 0xFF	; 255
+ 556:	80 93 68 00 	sts	0x0068, r24
+		if((a[counter-1] !=3))
+ 55a:	c8 0f       	add	r28, r24
+ 55c:	d1 1d       	adc	r29, r1
+ 55e:	21 97       	sbiw	r28, 0x01	; 1
+ 560:	88 81       	ld	r24, Y
+ 562:	83 30       	cpi	r24, 0x03	; 3
+ 564:	29 f0       	breq	.+10     	; 0x570 <check_password+0xac>
+		{
+			led_toggle(LED_BLUE);
+ 566:	82 e0       	ldi	r24, 0x02	; 2
+ 568:	0e 94 45 02 	call	0x48a	; 0x48a <led_toggle>
+			right = 0 ;
+ 56c:	10 92 66 00 	sts	0x0066, r1
+ 570:	8f ef       	ldi	r24, 0xFF	; 255
+ 572:	92 e5       	ldi	r25, 0x52	; 82
+ 574:	a7 e0       	ldi	r26, 0x07	; 7
+ 576:	81 50       	subi	r24, 0x01	; 1
+ 578:	90 40       	sbci	r25, 0x00	; 0
+ 57a:	a0 40       	sbci	r26, 0x00	; 0
+ 57c:	e1 f7       	brne	.-8      	; 0x576 <check_password+0xb2>
+ 57e:	00 c0       	rjmp	.+0      	; 0x580 <check_password+0xbc>
+ 580:	00 00       	nop
+		{    led_toggle(LED_BLUE);
+			right = 0 ;
+			_delay_ms(250);
+		}
+	}*/
+	if( (counter==6) && (right == 1))
+ 582:	80 91 68 00 	lds	r24, 0x0068
+ 586:	86 30       	cpi	r24, 0x06	; 6
+ 588:	09 f5       	brne	.+66     	; 0x5cc <check_password+0x108>
+ 58a:	80 91 66 00 	lds	r24, 0x0066
+ 58e:	81 30       	cpi	r24, 0x01	; 1
+ 590:	79 f4       	brne	.+30     	; 0x5b0 <check_password+0xec>
+	{
+		counter = 0 ;
+ 592:	10 92 68 00 	sts	0x0068, r1
+		led_on(LED_RED);
+ 596:	80 e0       	ldi	r24, 0x00	; 0
+ 598:	0e 94 03 02 	call	0x406	; 0x406 <led_on>
+ 59c:	8f ef       	ldi	r24, 0xFF	; 255
+ 59e:	99 e6       	ldi	r25, 0x69	; 105
+ 5a0:	a8 e1       	ldi	r26, 0x18	; 24
+ 5a2:	81 50       	subi	r24, 0x01	; 1
+ 5a4:	90 40       	sbci	r25, 0x00	; 0
+ 5a6:	a0 40       	sbci	r26, 0x00	; 0
+ 5a8:	e1 f7       	brne	.-8      	; 0x5a2 <check_password+0xde>
+ 5aa:	00 c0       	rjmp	.+0      	; 0x5ac <check_password+0xe8>
+ 5ac:	00 00       	nop
+ 5ae:	0e c0       	rjmp	.+28     	; 0x5cc <check_password+0x108>
+		_delay_ms(1000);
+	}
+	else if(counter==6)
+	{     led_on(LED_GREEN);
+ 5b0:	81 e0       	ldi	r24, 0x01	; 1
+ 5b2:	0e 94 03 02 	call	0x406	; 0x406 <led_on>
+ 5b6:	8f ef       	ldi	r24, 0xFF	; 255
+ 5b8:	99 e6       	ldi	r25, 0x69	; 105
+ 5ba:	a8 e1       	ldi	r26, 0x18	; 24
+ 5bc:	81 50       	subi	r24, 0x01	; 1
+ 5be:	90 40       	sbci	r25, 0x00	; 0
+ 5c0:	a0 40       	sbci	r26, 0x00	; 0
+ 5c2:	e1 f7       	brne	.-8      	; 0x5bc <check_password+0xf8>
+ 5c4:	00 c0       	rjmp	.+0      	; 0x5c6 <check_password+0x102>
+ 5c6:	00 00       	nop
+		_delay_ms(1000);
+		counter = 0 ;
+ 5c8:	10 92 68 00 	sts	0x0068, r1
+	}
+	
+	
+	
+}
+ 5cc:	df 91       	pop	r29
+ 5ce:	cf 91       	pop	r28
+ 5d0:	08 95       	ret
+
+000005d2 <main>:
+
+int main(void)
+{   
+ 5d2:	cf 93       	push	r28
+ 5d4:	df 93       	push	r29
+ 5d6:	00 d0       	rcall	.+0      	; 0x5d8 <main+0x6>
+ 5d8:	00 d0       	rcall	.+0      	; 0x5da <main+0x8>
+ 5da:	00 d0       	rcall	.+0      	; 0x5dc <main+0xa>
+ 5dc:	cd b7       	in	r28, 0x3d	; 61
+ 5de:	de b7       	in	r29, 0x3e	; 62
+	
+	
+	led_init();
+ 5e0:	0e 94 ee 01 	call	0x3dc	; 0x3dc <led_init>
+	button_vidInit();
+ 5e4:	0e 94 49 00 	call	0x92	; 0x92 <button_vidInit>
+	u8 a[]={1,1,2,3,3,3} ;
+ 5e8:	de 01       	movw	r26, r28
+ 5ea:	11 96       	adiw	r26, 0x01	; 1
+ 5ec:	e0 e6       	ldi	r30, 0x60	; 96
+ 5ee:	f0 e0       	ldi	r31, 0x00	; 0
+ 5f0:	86 e0       	ldi	r24, 0x06	; 6
+ 5f2:	01 90       	ld	r0, Z+
+ 5f4:	0d 92       	st	X+, r0
+ 5f6:	81 50       	subi	r24, 0x01	; 1
+ 5f8:	e1 f7       	brne	.-8      	; 0x5f2 <main+0x20>
+	
+	while(1)
+    {    
+			check_password(a);
+ 5fa:	ce 01       	movw	r24, r28
+ 5fc:	01 96       	adiw	r24, 0x01	; 1
+ 5fe:	0e 94 62 02 	call	0x4c4	; 0x4c4 <check_password>
+ 602:	fb cf       	rjmp	.-10     	; 0x5fa <main+0x28>
+
+00000604 <_exit>:
+ 604:	f8 94       	cli
+
+00000606 <__stop_program>:
+ 606:	ff cf       	rjmp	.-2      	; 0x606 <__stop_program>
