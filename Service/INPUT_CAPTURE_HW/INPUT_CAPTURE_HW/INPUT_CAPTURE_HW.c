@@ -63,7 +63,7 @@ int main()
 	SET_BIT(TIMSK,5);	//enable ICU INT
 	//// end init
 
-	while(u8flag!=3);
+	while(u8flag!=4);
 	//LCD_go_to_xy(2,0);
 	//lcd_write_char('a');
 
@@ -136,6 +136,7 @@ void __vector_6(void)
 		u16temp3 =  ICR1   ;
 		// set to rising 
 		SET_BIT(TCCR1B,6) ;
+		u8flag = 4 ;
 		
 	}
 	
